@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kuis Pancasila | Portal Edukasi Kebangsaan</title>
+  <title>Kuis Pancasila | EduLearn Portal</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -33,7 +33,7 @@
       overflow: hidden;
     }
 
-    /* ── SIDEBAR (KIRI) GRADASI MERAH ───────────────────── */
+    /* ── SIDEBAR (KIRI) ── */
     .sidebar {
       width: 280px;
       background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
@@ -51,16 +51,15 @@
     }
 
     .user-avatar {
-      font-size: 45px;
+      font-size: 44px;
       margin-bottom: 8px;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
     }
 
     .user-name {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
       letter-spacing: 0.5px;
-      color: #FDE047; /* Warna Emas untuk Judul Utama */
+      color: #FDE047; /* Aksentuation Kuning Emas */
     }
 
     .user-role {
@@ -124,7 +123,7 @@
       padding-top: 20px;
     }
 
-    /* ── AREA KONTEN UTAMA (KANAN) ──────────────────────── */
+    /* ── AREA KONTEN UTAMA (KANAN) ── */
     .main-content {
       flex-grow: 1;
       padding: 40px;
@@ -143,7 +142,6 @@
       margin-bottom: 24px;
     }
 
-    /* Kapsul Putih dengan Border Atas Merah */
     .portal-card {
       background-color: var(--white);
       border-radius: 24px;
@@ -157,11 +155,11 @@
       justify-content: flex-start;
     }
 
-    /* ── KONTEN HALAMAN ─────────────────────────────────── */
+    /* ── KONTEN HALAMAN ── */
     .page-section {
       display: none;
       width: 100%;
-      max-width: 650px;
+      max-width: 680px;
       text-align: center;
     }
 
@@ -205,6 +203,7 @@
       align-items: center;
       justify-content: space-between;
       font-weight: 600;
+      gap: 15px;
     }
 
     .list-btn {
@@ -217,13 +216,14 @@
       font-weight: 600;
       cursor: pointer;
       transition: background 0.2s;
+      flex-shrink: 0;
     }
 
     .list-btn:hover {
       background-color: var(--hover-red);
     }
 
-    /* Gaya Spesifik Opsi Kuis */
+    /* Opsi Kuis */
     .quiz-opt-btn {
       width: 100%;
       text-align: left;
@@ -241,7 +241,7 @@
       border-color: var(--text-pink-gray);
     }
 
-    /* Gaya Tabel Transkrip Nilai */
+    /* Tabel */
     table {
       width: 100%;
       border-collapse: collapse;
@@ -249,7 +249,7 @@
       margin-top: 15px;
     }
     th, td {
-      padding: 12px;
+      padding: 14px;
       border-bottom: 1px solid #E2E8F0;
       font-size: 14px;
     }
@@ -274,136 +274,128 @@
       <div class="user-profile">
         <div class="user-avatar">🦅</div>
         <div class="user-name">Kuis Pancasila</div>
-        <div class="user-role">Media Edukasi & Studi Kebangsaan</div>
+        <div class="user-role">EduLearn Studi Kebangsaan</div>
       </div>
 
-      <div class="menu-title">Materi & Evaluasi</div>
+      <div class="menu-title">Pembelajaran & Ujian</div>
       <div class="nav-menu">
         <div class="nav-item active" onclick="switchPage('materi', this)">
           <span class="nav-icon">📖</span>
-          <span>Materi</span>
+          <span>Modul Belajar</span>
         </div>
         <div class="nav-item" onclick="switchPage('kuis', this)">
           <span class="nav-icon">📝</span>
-          <span>Kuis</span>
+          <span>Ujian Kuis</span>
         </div>
         <div class="nav-item" onclick="switchPage('nilai', this)">
           <span class="nav-icon">📊</span>
-          <span>Nilai</span>
+          <span>Lihat Nilai</span>
         </div>
       </div>
     </div>
 
     <div class="sidebar-footer">
-      © 2026 - Kuis Pancasila<br>EduLearn Kebangsaan
+      © 2026 EduLearn<br>Platform Pembelajaran Digital
     </div>
   </div>
 
   <div class="main-content">
     <div class="top-bar">
-      <span>🇮🇩</span> <span id="section-title">Materi</span>
+      <span>🇮🇩</span> <span id="section-title">Modul Belajar</span>
     </div>
 
     <div class="portal-card">
       
       <div id="page-materi" class="page-section active">
         <div id="materi-list-view">
-          <div class="center-icon">📜</div>
-          <h2 class="welcome-title">Modul Pembelajaran Pancasila</h2>
-          <p class="welcome-desc">Pilih modul di bawah ini untuk memahami sejarah lahirnya dasar negara Indonesia.</p>
+          <div class="center-icon">📖</div>
+          <h2 class="welcome-title">Kisi-Kisi & Panduan Ujian</h2>
+          <p class="welcome-desc">Pelajari rangkuman materi di bawah ini secara saksama. Semua poin penting berikut ini merupakan kunci jawaban langsung dari 40 soal kuis yang akan Anda hadapi.</p>
+          
           <div class="item-list">
             <div class="list-card">
-              <span>Bab 1: Sejarah Perumusan Pancasila</span>
-              <button class="list-btn" onclick="bukaModul('Bab 1: Sejarah Perumusan Pancasila', 'Pancasila dirumuskan melalui rangkaian sidang BPUPKI (Badan Penyelidik Usaha-Usaha Persiapan Kemerdekaan Indonesia). Istilah Pancasila pertama kali diperkenalkan secara resmi oleh Ir. Soekarno dalam pidatonya pada tanggal 1 Juni 1945. Rumusan tersebut kemudian dimatangkan oleh Panitia Sembilan dalam Piagam Jakarta sebelum akhirnya disahkan secara konstitusional pada tanggal 18 Agustus 1945 di dalam UUD 1945.')">Buka Modul</button>
+              <span>Modul 1: Sejarah Perumusan & Tokoh Bangsa</span>
+              <button class="list-btn" onclick="bukaModul('Modul 1: Sejarah Perumusan & Tokoh Bangsa', 'Poin Inti Sejarah Pancasila:\n\n1. Lahirnya Istilah Pancasila: Pertama kali dicetuskan oleh Ir. Soekarno dalam sidang BPUPKI pada tanggal 1 Juni 1945.\n2. Badan Perumus: Sidang pertama BPUPKI diketuai oleh Dr. Radjiman Wedyodiningrat dengan agenda utama menyusun dasar negara Indonesia.\n3. Tiga Tokoh Pengusul: Mohammad Yamin (29 Mei 1945), Prof. Dr. Soepomo (31 Mei 1945), dan Ir. Soekarno (1 Juni 1945).\n4. Piagam Jakarta: Dirumuskan oleh Panitia Sembilan pada 22 Juni 1945.\n5. Pengesahan Resmi: Pancasila sah sebagai dasar negara secara konstitusional pada tanggal 18 Agustus 1945 oleh PPKI.\n6. Hari Peringatan: Hari Lahir Pancasila diperingati setiap 1 Juni, sedangkan Hari Kesaktian Pancasila diperingati setiap 1 Oktober.')">Buka Materi</button>
             </div>
             <div class="list-card">
-              <span>Bab 2: Makna Lambang & Perisai Garuda</span>
-              <button class="list-btn" onclick="bukaModul('Bab 2: Makna Lambang & Perisai Garuda', 'Perisai pada dada Burung Garuda memuat 5 simbol suci: Bintang emas mencerminkan sila ke-1 (Ketuhanan), Rantai baja melambangkan sila ke-2 (Kemanusiaan), Pohon Beringin melambangkan sila ke-3 (Persatuan), Kepala Banteng melambangkan sila ke-4 (Kerakyatan/Musyawarah), serta Padi dan Kapas melambangkan sila ke-5 (Keadilan Sosial).')">Buka Modul</button>
+              <span>Modul 2: Struktur Anatomi & Simbol Garuda</span>
+              <button class="list-btn" onclick="bukaModul('Modul 2: Struktur Anatomi & Simbol Garuda', 'Poin Inti Lambang Negara:\n\n1. Arah Hadap: Kepala Burung Garuda Pancasila selalu menoleh lurus ke arah Kanan.\n2. Filosofi Bulu (Hari Kemerdekaan): Sayap berjumlah 17 helai, Ekor berjumlah 8 helai, Pangkal ekor/bawah perisai berjumlah 19 helai, dan Leher berjumlah 45 helai (17-8-1945).\n3. Semboyan Negara: \'Bhinneka Tunggal Ika\' berarti berbeda-beda tetapi tetap satu jua, diambil dari Kitab Sutasoma karangan Empu Tantular dari era Kerajaan Majapahit.\n4. Bentuk Simbol Perisai:\n   - Sila 1: Bintang Emas dengan latar belakang warna Hitam.\n   - Sila 2: Rantai Baja berbentuk lingkaran (simbol perempuan) dan segi empat (simbol laki-laki).\n   - Sila 3: Pohon Beringin.\n   - Sila 4: Kepala Banteng.\n   - Sila 5: Padi dan Kapas.\n5. Kedudukan Hukum: Pancasila merupakan Sumber dari Segala Sumber Hukum di Indonesia dan berperan sebagai filter/penyaring budaya asing.')">Buka Materi</button>
+            </div>
+            <div class="list-card">
+              <span>Modul 3: Penerapan Nilai Sila 1 - 5</span>
+              <button class="list-btn" onclick="bukaModul('Modul 3: Penerapan Nilai Sila 1 - 5', 'Poin Inti Butir Pengamalan Pancasila:\n\n- Sila 1 (Ketuhanan): Menghormati kebebasan beribadah tetangga/teman, toleransi umat beragama, nilai religius.\n- Sila 2 (Kemanusiaan): Mengembangkan sikap saling mencintai sesama manusia, menjunjung tinggi harkat martabat manusia secara adil, tidak semena-mena.\n- Sila 3 (Persatuan): Mengikuti kerja bakti/gotong royong di desa, menjaga kebersamaan, rela berkorban demi nusa bangsa, cinta tanah air.\n- Sila 4 (Kerakyatan): Mengutamakan musyawarah untuk mencapai mufakat, tidak memaksakan kehendak pribadi kepada orang lain saat berdiskusi.\n- Sila 5 (Keadilan): Bersikap adil, menghargai hasil karya orang lain, gemar menabung, tidak hidup boros atau bergaya hidup mewah.')">Buka Materi</button>
             </div>
           </div>
         </div>
         
         <div id="materi-read-view" style="display:none; text-align: left; width: 100%;">
-          <button class="list-btn" style="background-color: #64748B; margin-bottom: 20px;" onclick="kembaliKeMateriList()">← Kembali Ke Modul</button>
+          <button class="list-btn" style="background-color: #64748B; margin-bottom: 20px;" onclick="kembaliKeMateriList()">← Kembali Ke Daftar Modul</button>
           <h3 id="read-title" style="margin-bottom: 15px; color: var(--bg-gradient-start); font-size: 22px;"></h3>
-          <p id="read-body" style="line-height: 1.7; color: #334155; background: var(--light-red); padding: 20px; border-radius: 12px; border-left: 5px solid var(--accent-red); font-size: 15px;"></p>
+          <p id="read-body" style="line-height: 1.7; color: #334155; background: var(--light-red); padding: 20px; border-radius: 12px; border-left: 5px solid var(--accent-red); font-size: 15px; white-space: pre-line;"></p>
         </div>
       </div>
 
       <div id="page-kuis" class="page-section">
         <div id="quiz-start-box">
-          <div class="center-icon">✍️</div>
-          <h2 class="welcome-title">Evaluasi Kuis Pancasila</h2>
-          <p class="welcome-desc">Uji wawasan kebangsaan dan pemahaman nilai ideologi Pancasila Anda lewat 3 soal pilihan ganda interaktif berikut.</p>
-          <button class="list-btn" style="padding: 12px 36px; font-size: 15px;" onclick="mulaiKuisApp()">Mulai Kuis Sekarang</button>
+          <div class="center-icon">📝</div>
+          <h2 class="welcome-title">Ujian Mandiri Kebangsaan</h2>
+          <p class="welcome-desc">Ujian ini berisi 40 soal pilihan ganda. Pastikan Anda telah membaca modul secara menyeluruh sebelum memulai kuis ini.</p>
+          <button class="list-btn" style="padding: 12px 36px; font-size: 15px;" onclick="mulaiKuisApp()">Mulai Ujian Sekarang</button>
         </div>
 
         <div id="quiz-play-box" style="display: none; text-align: left; width: 100%;">
           <div style="display: flex; justify-content: space-between; font-weight: 700; color: var(--bg-gradient-start); margin-bottom: 15px;">
-            <span id="quiz-status">Soal 1 dari 3</span>
-            <span id="quiz-score">Skor Saat Ini: 0</span>
+            <span id="quiz-status">Soal 1 dari 40</span>
+            <span id="quiz-score">Skor Benar: 0</span>
           </div>
-          <h4 id="quiz-question-text" style="font-size: 18px; margin-bottom: 20px; color: var(--text-main); line-height: 1.4;"></h4>
-          <div id="quiz-options-container" style="display: flex; flex-direction: column; gap: 10px;">
-            </div>
+          <h4 id="quiz-question-text" style="font-size: 17px; margin-bottom: 20px; color: var(--text-main); line-height: 1.5;"></h4>
+          <div id="quiz-options-container" style="display: flex; flex-direction: column; gap: 10px;"></div>
         </div>
 
         <div id="quiz-result-box" style="display: none;">
           <div class="center-icon">🎉</div>
-          <h2 class="welcome-title">Kuis Selesai!</h2>
-          <p class="welcome-desc" id="quiz-summary-text" style="font-size: 18px; font-weight: 600; color: #15803D;"></p>
-          <button class="list-btn" style="background-color: #64748B;" onclick="resetKuisApp()">Coba Ulang Kuis</button>
+          <h2 class="welcome-title">Ujian Telah Selesai!</h2>
+          <p class="welcome-desc" id="quiz-summary-text" style="font-size: 18px; font-weight: 600; color: #15803D; margin-bottom: 20px;"></p>
+          <p class="welcome-desc" style="font-size: 14px; margin-bottom: 24px;">Nilai Anda sekarang telah tercatat secara otomatis di tab menu <strong>"Lihat Nilai"</strong>.</p>
+          <button class="list-btn" style="background-color: #64748B;" onclick="resetKuisApp()">Coba Ulang Ujian</button>
         </div>
       </div>
 
       <div id="page-nilai" class="page-section">
-        <div class="center-icon">🏆</div>
-        <h2 class="welcome-title">Transkrip Nilai Kebangsaan</h2>
-        <p class="welcome-desc">Berikut adalah rekapitulasi capaian nilai akademis Anda pada topik materi Pancasila.</p>
+        <div class="center-icon">📊</div>
+        <h2 class="welcome-title">Laporan Nilai Akademik</h2>
+        <p class="welcome-desc">Halaman nilai ini terintegrasi langsung dengan hasil lembar jawaban ujian kuis Anda secara berkala.</p>
         
-        <div style="width: 100%; overflow-x: auto; margin-bottom: 30px;">
-          <table>
-            <thead>
-              <tr>
-                <th>Komponen Penilaian</th>
-                <th>Bobot</th>
-                <th>Nilai Anda</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Tugas Resume Tokoh BPUPKI</td>
-                <td>30%</td>
-                <td style="font-weight: 700; color: #16A34A;">95</td>
-              </tr>
-              <tr>
-                <td>Ujian Tengah Semester (UTS)</td>
-                <td>35%</td>
-                <td style="font-weight: 700; color: #16A34A;">88</td>
-              </tr>
-              <tr>
-                <td>Ujian Akhir Semester (UAS)</td>
-                <td>35%</td>
-                <td style="font-weight: 700; color: #16A34A;">90</td>
-              </tr>
-            </tbody>
-          </table>
+        <div id="nilai-belum-box" style="padding: 40px 20px; background: #F8FAFC; border: 2px dashed #CBD5E1; border-radius: 16px;">
+          <p style="font-weight: 600; color: #64748B; font-size: 15px;">🔒 Data Nilai Kosong / Belum Tersedia.</p>
+          <p style="color: #94A3B8; font-size: 13px; margin-top: 4px;">Anda harus mengikuti dan menyelesaikan evaluasi di menu <strong>Ujian Kuis</strong> terlebih dahulu.</p>
         </div>
 
-        <div style="background-color: var(--light-red); border: 1px dashed var(--text-pink-gray); border-radius: 14px; padding: 20px; width: 100%; text-align: left;">
-          <h4 style="color: var(--bg-gradient-start); margin-bottom: 8px;">🧮 Alat Hitung Simulasi Nilai Akhir</h4>
-          <p style="font-size: 13px; color: #475569; margin-bottom: 16px;">Masukkan prediksi hasil kuis tambahan Anda di bawah untuk mengukur proyeksi akumulasi total kelulusan kelas studi kebangsaan.</p>
-          
-          <div style="display: flex; flex-wrap: wrap; gap: 15px; align-items: center;">
-            <div>
-              <label style="font-size: 13px; font-weight: 600; display:block; margin-bottom: 4px;">Prediksi Nilai Kuis Tambahan:</label>
-              <input type="number" id="simulasi-input" value="90" min="0" max="100" style="padding: 8px 12px; width: 100px; border-radius: 6px; border: 1px solid #CBD5E1; font-weight: 600;">
-            </div>
-            <button class="list-btn" style="margin-top: 18px;" onclick="hitungSimulasiPredikat()">Kalkulasikan Nilai</button>
+        <div id="nilai-sudah-box" style="display: none; width: 100%;">
+          <div style="width: 100%; overflow-x: auto; margin-bottom: 24px;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Nama Komponen Evaluasi</th>
+                  <th>Total Soal</th>
+                  <th>Jawaban Benar</th>
+                  <th>Skor Akhir Konversi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight: 600; text-align: left;">Ujian Kompetensi Kuis Pancasila (40 Soal)</td>
+                  <td>40</td>
+                  <td id="tabel-benar" style="font-weight: 700; color: var(--accent-red);">0 Soal</td>
+                  <td id="tabel-skor" style="font-weight: 700; color: #16A34A; font-size: 16px;">0</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          
-          <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid #E2E8F0; font-weight: 700; font-size: 15px; color: var(--bg-gradient-start);">
-            Hasil Estimasi Akumulasi: <span id="simulasi-hasil" style="color: var(--accent-red); font-weight: 700;">90.80 (Predikat Kategori A)</span>
+
+          <div style="background-color: var(--light-red); border: 1px solid var(--text-pink-gray); border-radius: 14px; padding: 20px; text-align: left;">
+            <h4 id="predikat-title" style="color: var(--bg-gradient-start); margin-bottom: 6px; font-size: 16px;">🏆 Predikat Kelulusan: -</h4>
+            <p id="predikat-desc" style="font-size: 14px; color: #475569; line-height: 1.5;"></p>
           </div>
         </div>
       </div>
@@ -412,7 +404,7 @@
   </div>
 
   <script>
-    /* ── LOGIK SWITCH HALAMAN DASHBOARD ── */
+    /* ── LOGIK SWITCH NAVIGASI HALAMAN ── */
     function switchPage(pageId, element) {
       document.querySelectorAll('.page-section').forEach(section => {
         section.classList.remove('active');
@@ -424,11 +416,13 @@
       document.getElementById('page-' + pageId).classList.add('active');
       element.classList.add('active');
 
-      const formatTitle = pageId.charAt(0).toUpperCase() + pageId.slice(1);
+      let formatTitle = "Modul Belajar";
+      if(pageId === 'kuis') formatTitle = "Ujian Kuis";
+      if(pageId === 'nilai') formatTitle = "Lihat Nilai";
       document.getElementById('section-title').textContent = formatTitle;
     }
 
-    /* ── INTERAKSI FITUR 1: MATERI READ DYNAMIC ── */
+    /* ── LOGIK MODUL PEMBELAJARAN ── */
     function bukaModul(title, text) {
       document.getElementById('materi-list-view').style.display = 'none';
       document.getElementById('materi-read-view').style.display = 'block';
@@ -440,28 +434,54 @@
       document.getElementById('materi-list-view').style.display = 'block';
     }
 
-    /* ── INTERAKSI FITUR 2: CORE LOGIC KUIS PANCASILA ── */
+    /* ── DATABASE UTAMA: 40 SOAL MATERI PANCASILA KUIS ── */
     const databaseKuis = [
-      {
-        pertanyaan: "Sila ketiga Pancasila, 'Persatuan Indonesia', dilambangkan pada perisai Garuda dengan simbol...",
-        pilihan: ["Bintang Emas", "Rantai Baja", "Pohon Beringin", "Kepala Banteng"],
-        jawabanBenar: 2
-      },
-      {
-        pertanyaan: "Setiap tanggal berapakah masyarakat Indonesia memperingati Hari Lahir Pancasila secara nasional?",
-        pilihan: ["1 Juni", "22 Juni", "17 Agustus", "1 Oktober"],
-        jawabanBenar: 0
-      },
-      {
-        pertanyaan: "Simbol Padi dan Kapas mencerminkan nilai luhur Pancasila, tepatnya pada sila keberapa?",
-        pilihan: ["Sila Kedua", "Sila Ketiga", "Sila Keempat", "Sila Kelima"],
-        jawabanBenar: 3
-      }
+      { pertanyaan: "1. Siapakah tokoh nasional yang pertama kali mencetuskan istilah 'Pancasila' pada tanggal 1 Juni 1945?", pilihan: ["Mohammad Yamin", "Ir. Soekarno", "Prof. Dr. Soepomo", "Drs. Moh. Hatta"], jawabanBenar: 1 },
+      { pertanyaan: "2. Sidang pertama BPUPKI yang bertujuan merumuskan dasar negara Indonesia dipimpin oleh ketua...", pilihan: ["Raden Pandji Soeroso", "Ir. Soekarno", "Dr. Radjiman Wedyodiningrat", "Ichibangase Yosio"], jawabanBenar: 2 },
+      { pertanyaan: "3. Pada tanggal berapakah Mohammad Yamin menyampaikan rumusan dasar negara secara lisan dan tertulis?", pilihan: ["29 Mei 1945", "31 Mei 1945", "1 Juni 1945", "22 Juni 1945"], jawabanBenar: 0 },
+      { pertanyaan: "4. Prof. Dr. Soepomo menyampaikan rumusan lima dasar negara Indonesia merdeka pada sidang tanggal...", pilihan: ["29 Mei 1945", "31 Mei 1945", "1 Juni 1945", "17 Agustus 1945"], jawabanBenar: 1 },
+      { pertanyaan: "5. Dokumen historis hasil rumusan Panitia Sembilan pada tanggal 22 Juni 1945 dinamakan...", pilihan: ["UUD 1945", "Piagam Jakarta", "Teks Proklamasi", "Dekrit Presiden"], jawabanBenar: 1 },
+      { pertanyaan: "6. Kapan Pancasila secara resmi disahkan sebagai dasar negara kesatuan Republik Indonesia secara hukum/konstitusi?", pilihan: ["1 Juni 1945", "22 Juni 1945", "17 Agustus 1945", "18 Agustus 1945"], jawabanBenar: 3 },
+      { pertanyaan: "7. Lembaga/badan manakah yang meresmikan dan mengesahkan Pancasila sebagai dasar negara pada 18 Agustus 1945?", pilihan: ["BPUPKI", "PPKI", "KNIP", "MPR"], jawabanBenar: 1 },
+      { pertanyaan: "8. Hari Kesaktian Pancasila diperingati oleh seluruh rakyat Indonesia setiap tanggal...", pilihan: ["1 Juni", "17 Agustus", "1 Oktober", "28 Oktober"], jawabanBenar: 2 },
+      { pertanyaan: "9. Burung Garuda Pancasila sebagai lambang resmi negara Indonesia memiliki kepala yang menoleh ke arah...", pilihan: ["Kiri", "Kanan", "Depan", "Atas"], jawabanBenar: 1 },
+      { pertanyaan: "10. Berapakah jumlah helai bulu yang terdapat pada masing-masing sayap Burung Garuda?", pilihan: ["8 helai", "17 helai", "19 helai", "45 helai"], jawabanBenar: 1 },
+      { pertanyaan: "11. Jumlah bulu yang terdapat pada ekor Burung Garuda Pancasila adalah...", pilihan: ["8 helai", "17 helai", "19 helai", "45 helai"], jawabanBenar: 0 },
+      { pertanyaan: "12. Jumlah helai bulu di bawah perisai atau pada pangkal ekor Garuda Pancasila melambangkan tahun...", pilihan: ["08", "17", "19", "45"], jawabanBenar: 2 },
+      { pertanyaan: "13. Jumlah helai bulu yang berada di leher Burung Garuda Pancasila melambangkan angka...", pilihan: ["8 helai", "17 helai", "19 helai", "45 helai"], jawabanBenar: 3 },
+      { pertanyaan: "14. Semboyan nasional 'Bhinneka Tunggal Ika' yang tertulis pada pita cengkeraman Garuda memiliki arti...", pilihan: ["Bersatu kita teguh bercerai kita runtuh", "Berbeda-beda tetapi tetap satu jua", "Satu nusa satu bangsa satu bahasa", "Sama rata dan sama rasa senasib"], jawabanBenar: 1 },
+      { pertanyaan: "15. Semboyan Bhinneka Tunggal Ika diambil kuno dari kutipan sebuah kitab Jawa Kuno yang berjudul...", pilihan: ["Kitab Negara Kertagama", "Kitab Sutasoma", "Kitab Arjuna Wiwaha", "Kitab Pararaton"], jawabanBenar: 1 },
+      { pertanyaan: "16. Siapakah pujangga/pengarang terkenal dari Kerajaan Majapahit yang menulis Kitab Sutasoma?", pilihan: ["Empu Prapanca", "Empu Tantular", "Empu Panuluh", "Empu Sedah"], jawabanBenar: 1 },
+      { pertanyaan: "17. Lambang perisai suci untuk sila pertama Pancasila, 'Ketuhanan Yang Maha Esa', digambarkan dengan simbol...", pilihan: ["Pohon Beringin", "Kepala Banteng", "Rantai Baja", "Bintang Emas"], jawabanBenar: 4 },
+      { pertanyaan: "18. Latar belakang warna ruang pada simbol Bintang Emas sila pertama Pancasila adalah berwarna...", pilihan: ["Merah", "Putih", "Hijau", "Hitam"], jawabanBenar: 3 },
+      { pertanyaan: "19. Sila kedua Pancasila, 'Kemanusiaan yang adil dan beradab', secara simbolis dilambangkan oleh...", pilihan: ["Bintang", "Rantai Baja", "Pohon Beringin", "Padi dan Kapas"], jawabanBenar: 1 },
+      { pertanyaan: "20. Pada simbol sila kedua, mata rantai berbentuk persegi melambangkan gender...", pilihan: ["Laki-laki", "Perempuan", "Anak-anak", "Lansia"], jawabanBenar: 0 },
+      { pertanyaan: "21. Pada simbol sila kedua, mata rantai yang berbentuk lingkaran melambangkan...", pilihan: ["Laki-laki", "Perempuan", "Persatuan", "Keadilan"], jawabanBenar: 1 },
+      { pertanyaan: "22. Pohon Beringin merupakan simbol sakral yang mewakili sila Pancasila keberapa?", pilihan: ["Sila Kedua", "Sila Ketiga", "Sila Keempat", "Sila Kelima"], jawabanBenar: 2 },
+      { pertanyaan: "23. Sila keempat Pancasila dilambangkan oleh Kepala Banteng. Mengapa hewan banteng dipilih?", pilihan: ["Karena banteng hewan penyendiri", "Karena banteng hewan sosial yang suka berkumpul", "Karena banteng hewan asli papua", "Karena banteng melambangkan pertanian"], jawabanBenar: 1 },
+      { pertanyaan: "24. Simbol Padi dan Kapas pada perisai Garuda melambangkan sila...", pilihan: ["Persatuan Indonesia", "Keadilan sosial bagi seluruh rakyat Indonesia", "Kemanusiaan yang adil dan beradab", "Ketuhanan Yang Maha Esa"], jawabanBenar: 1 },
+      { pertanyaan: "25. Kedudukan dan fungsi utama Pancasila dalam sistem tatanan hukum di Indonesia adalah sebagai...", pilihan: ["Hukum adat tertinggi", "Sumber dari segala sumber hukum negara", "Hukum internasional", "Undang-undang pelengkap"], jawabanBenar: 2 },
+      { pertanyaan: "26. Pancasila berfungsi sebagai 'Way of life' bagi bangsa Indonesia. Istilah ini memiliki arti sebagai...", pilihan: ["Perjanjian luhur", "Pandangan hidup bangsa", "Kepribadian bangsa", "Cita-cita bangsa"], jawabanBenar: 1 },
+      { pertanyaan: "27. Pancasila berperan sebagai filter dalam globalisasi, artinya Pancasila digunakan untuk...", pilihan: ["Menolak semua bentuk teknologi dari luar negeri", "Menyaring budaya asing agar sesuai nilai luhur bangsa", "Menerima budaya luar tanpa batasan", "Melarang warga negara ke luar negeri"], jawabanBenar: 1 },
+      { pertanyaan: "28. Menghormati teman atau tetangga yang sedang menjalankan ibadah keagamaan merupakan pengamalan sila ke...", pilihan: ["1", "2", "3", "4"], jawabanBenar: 0 },
+      { pertanyaan: "29. Mengembangkan sikap saling mencintai, tenggang rasa, dan tidak semena-mena kepada orang lain wujud sila...", pilihan: ["Sila Pertama", "Sila Kedua", "Sila Ketiga", "Sila Keempat"], jawabanBenar: 1 },
+      { pertanyaan: "30. Ikut serta secara aktif dalam kegiatan kerja bakti atau gotong royong membersihkan kampung adalah wujud sila ke...", pilihan: ["2", "3", "4", "5"], jawabanBenar: 1 },
+      { pertanyaan: "31. Mengutamakan kepentingan bangsa dan negara di atas kepentingan pribadi atau golongan merupakan perwujudan sila ke...", pilihan: ["Sila Ke-1", "Sila Ke-2", "Sila Ke-3", "Sila Ke-5"], jawabanBenar: 2 },
+      { pertanyaan: "32. Mengutamakan jalur musyawarah mufakat dalam menyelesaikan setiap perbedaan pendapat merupakan pengamalan sila ke...", pilihan: ["2", "3", "4", "5"], jawabanBenar: 2 },
+      { pertanyaan: "33. Tidak memaksakan kehendak atau pilihan pribadi kepada orang lain saat berdiskusi kelompok kelompok sesuai sila...", pilihan: ["Sila Kedua", "Sila Ketiga", "Sila Keempat", "Sila Kelima"], jawabanBenar: 2 },
+      { pertanyaan: "34. Suka menghargai hasil karya orang lain dan bersikap adil kepada sesama merupakan contoh pengamalan sila ke...", pilihan: ["2", "3", "4", "5"], jawabanBenar: 3 },
+      { pertanyaan: "35. Membiasakan diri gemar menabung dan menjauhi gaya hidup boros/mewah merupakan butir pengamalan sila...", pilihan: ["Sila Kedua", "Sila Ketiga", "Sila Keempat", "Sila Kelima"], jawabanBenar: 3 },
+      { pertanyaan: "36. Mengakui persamaan derajat, hak, serta kewajiban asasi antar sesama manusia didasarkan pada sila...", pilihan: ["Sila 1", "Sila 2", "Sila 3", "Sila 4"], jawabanBenar: 1 },
+      { pertanyaan: "37. Rela berkorban demi kepentingan nusa, bangsa, dan negara apabila diperlukan merupakan cerminan dari sila...", pilihan: ["Ketuhanan", "Kemanusiaan", "Persatuan", "Kerakyatan"], jawabanBenar: 2 },
+      { pertanyaan: "38. Sila Pancasila yang menjamin hak asasi warga negara dalam memeluk agama sesuai keyakinan masing-masing adalah...", pilihan: ["Sila Pertama", "Sila Kedua", "Sila Ketiga", "Sila Kelima"], jawabanBenar: 0 },
+      { pertanyaan: "39. Menjaga keseimbangan antara hak milik pribadi dengan kewajiban sosial masyarakat merupakan pengamalan sila ke...", pilihan: ["2", "3", "4", "5"], jawabanBenar: 3 },
+      { pertanyaan: "40. Bangga sebagai bagian dari bangsa Indonesia dan bertanah air Indonesia merupakan perwujudan nilai-nilai sila...", pilihan: ["Sila Kesatu", "Sila Kedua", "Sila Ketiga", "Sila Kelima"], jawabanBenar: 2 }
     ];
 
     let indeksSoal = 0;
-    let akumulasiSkor = 0;
+    let totalBenar = 0;
 
+    /* ── CORE LOGIC INTERAKSI KUIS ── */
     function mulaiKuisApp() {
       document.getElementById('quiz-start-box').style.display = 'none';
       document.getElementById('quiz-play-box').style.display = 'block';
@@ -471,7 +491,7 @@
     function tampilkanSoalAktif() {
       const dataSoal = databaseKuis[indeksSoal];
       document.getElementById('quiz-status').textContent = `Soal ${indeksSoal + 1} dari ${databaseKuis.length}`;
-      document.getElementById('quiz-score').textContent = `Skor Saat Ini: ${akumulasiSkor}`;
+      document.getElementById('quiz-score').textContent = `Skor Benar: ${totalBenar}`;
       document.getElementById('quiz-question-text').textContent = dataSoal.pertanyaan;
 
       const containerOpsi = document.getElementById('quiz-options-container');
@@ -488,45 +508,59 @@
 
     function verifikasiJawabanUser(indexDipilih) {
       if (indexDipilih === databaseKuis[indeksSoal].jawabanBenar) {
-        akumulasiSkor += 33; 
+        totalBenar++;
       }
       
       indeksSoal++;
       if (indeksSoal < databaseKuis.length) {
         tampilkanSoalAktif();
       } else {
-        if(akumulasiSkor > 90) akumulasiSkor = 100;
         akhiriKuisApp();
       }
     }
 
     function akhiriKuisApp() {
+      // Hitung skor akhir dengan skala 0 - 100
+      const skorAkhir = Math.round((totalBenar / databaseKuis.length) * 100);
+      
       document.getElementById('quiz-play-box').style.display = 'none';
       document.getElementById('quiz-result-box').style.display = 'block';
-      document.getElementById('quiz-summary-text').textContent = `Selamat! Anda Menyelesaikan Kuis Pancasila Dengan Nilai Akhir: ${akumulasiSkor} / 100`;
+      document.getElementById('quiz-summary-text').textContent = `Ujian Selesai! Skor Benar: ${totalBenar} / 40 Soal. Nilai Evaluasi: ${skorAkhir} / 100`;
+      
+      // LOGIK DINAMIS: Update tabel Nilai mengikut hasil asli ujian kuis
+      document.getElementById('nilai-belum-box').style.display = 'none';
+      document.getElementById('nilai-sudah-box').style.display = 'block';
+      
+      document.getElementById('tabel-benar').textContent = `${totalBenar} Soal`;
+      document.getElementById('tabel-skor').textContent = skorAkhir;
+      
+      // Hitung predikat dan deskripsi kelulusan secara dinamis
+      let predikat = "";
+      let deskripsi = "";
+      
+      if(skorAkhir >= 85) {
+        predikat = "A (Sangat Memuaskan)";
+        deskripsi = "Luar biasa! Anda memiliki wawasan kebangsaan yang sangat tinggi dan memahami nilai-nilai Pancasila dengan sempurna.";
+      } else if(skorAkhir >= 70) {
+        predikat = "B (Baik)";
+        deskripsi = "Bagus sekali! Anda memahami sebagian besar materi sejarah perumusan Pancasila dan penerapan simbol perisai negara dengan baik.";
+      } else if(skorAkhir >= 55) {
+        predikat = "C (Cukup)";
+        deskripsi = "Nilai Anda cukup. Disarankan untuk membaca ulang dokumen rangkuman pada menu Modul Belajar dan mengulang ujian kuis kembali.";
+      } else {
+        predikat = "D (Kurang / Tidak Lulus)";
+        deskripsi = "Nilai Anda masih berada di bawah standar minimum kelulusan. Silakan pelajari kembali modul kisi-kisi dan coba lagi.";
+      }
+      
+      document.getElementById('predikat-title').textContent = `🏆 Predikat Kelulusan: ${predikat}`;
+      document.getElementById('predikat-desc').textContent = deskripsi;
     }
 
     function resetKuisApp() {
       indeksSoal = 0;
-      akumulasiSkor = 0;
+      totalBenar = 0;
       document.getElementById('quiz-result-box').style.display = 'none';
       document.getElementById('quiz-start-box').style.display = 'block';
-    }
-
-    /* ── INTERAKSI FITUR 3: KALKULATOR SIMULASI NILAI AKHIR ── */
-    function hitungSimulasiPredikat() {
-      const nilaiKuisTambahan = parseFloat(document.getElementById('simulasi-input').value) || 0;
-      // Bobot nilai default transkrip (95, 88, 90)
-      const rataRataBase = (95 * 0.3) + (88 * 0.35) + (90 * 0.35);
-      const nilaiFinalKalkulasi = (rataRataBase * 0.8) + (nilaiKuisTambahan * 0.2);
-      
-      let kategoriPredikat = "E (Mengulang)";
-      if (nilaiFinalKalkulasi >= 85) kategoriPredikat = "A (Sangat Memuaskan)";
-      else if (nilaiFinalKalkulasi >= 75) kategoriPredikat = "B (Baik)";
-      else if (nilaiFinalKalkulasi >= 60) kategoriPredikat = "C (Cukup)";
-      else if (nilaiFinalKalkulasi >= 50) kategoriPredikat = "D (Kurang)";
-
-      document.getElementById('simulasi-hasil').textContent = `${nilaiFinalKalkulasi.toFixed(2)} (Kategori ${kategoriPredikat})`;
     }
   </script>
 </body>
