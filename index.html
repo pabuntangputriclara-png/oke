@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kuis Kemerdekaan Indonesia | Pusat Studi Kebangsaan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --red-900: #7B0000;
+      --red-800: #9B0000;
+      --red-700: #B91C1C;
+      --red-600: #DC2626;
+      --red-500: #EF4444;
+      --red-400: #F87171;
+      --red-100: #FEE2E2;
+      --red-50:  #FFF5F5;
+      --gold:    #C9921A;
+      --gold-light: #F5D47A;
+      --white:   #FFFFFF;
+      --gray-900: #111827;
+      --gray-700: #374151;
+      --gray-500: #6B7280;
+      --gray-200: #E5E7EB;
+      --gray-100: #F9FAFB;
+      --shadow-lg: 0 10px 40px rgba(123,0,0,0.18);
+      --shadow-md: 0 4px 16px rgba(123,0,0,0.12);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(160deg, #7B0000 0%, #B91C1C 40%, #EF4444 100%);
+      min-height: 100vh;
+      color: var(--gray-900);
+    }
+
+    /* ── HEADER ─────────────────────────────────────────── */
+    header {
+      background: rgba(0,0,0,0.35);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.12);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .header-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 14px 28px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+    .logo-text { color: var(--white); }
+    .logo-text span { display: block; }
+    .logo-text .brand { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; line-height: 1.1; }
+    .logo-text .sub   { font-size: 11px; opacity: 0.7; letter-spacing: 0.08em; text-transform: uppercase; }
+    .header-badge {
+      background: rgba(201,146,26,0.25);
+      border: 1px solid rgba(201,146,26,0.5);
+      color: var(--gold-light);
+      font-size: 12px; font-weight: 600;
+      padding: 5px 14px; border-radius: 999px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── HERO ────────────────────────────────────────────── */
+    .hero {
+      max-width: 860px; margin: 0 auto;
+      padding: 72px 28px 48px;
+      text-align: center;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      font-size: 12px; font-weight: 600;
+      padding: 6px 18px; border-radius: 999px;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 6vw, 62px);
+      font-weight: 900; line-height: 1.1;
+      color: var(--white);
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
+    }
+    .hero h1 em { font-style: normal; color: var(--gold-light); }
+    .hero p {
+      color: rgba(255,255,255,0.82);
+      font-size: 17px; line-height: 1.7;
+      max-width: 600px; margin: 0 auto 36px;
+    }
+    .meta-pills {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      justify-content: center; margin-bottom: 40px;
+    }
+    .pill {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: var(--white);
+      font-size: 13px; font-weight: 500;
+      padding: 7px 16px; border-radius: 999px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .pill svg { width: 14px; height: 14px; opacity: 0.8; }
+
+    /* ── MAIN CARD ───────────────────────────────────────── */
+    .card-wrap {
+      max-width: 860px; margin: 0 auto;
+      padding: 0 20px 80px;
+    }
+    .card {
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+    }
+
+    /* ── PROGRESS BAR ────────────────────────────────────── */
+    .progress-bar-wrap {
+      background: var(--red-100);
+      padding: 18px 28px 0;
+    }
+    .progress-meta {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 10px;
+    }
+    .progress-label { font-size: 13px; font-weight: 600; color: var(--red-700); }
+    .progress-count { font-size: 13px; color: var(--gray-500); }
+    .progress-track {
+      height: 8px; background: var(--gray-200);
+      border-radius: 999px; overflow: hidden;
+      margin-bottom: 18px;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--red-700), var(--red-500));
+      border-radius: 999px;
+      transition: width 0.5s cubic-bezier(.4,0,.2,1);
+      width: 0%;
+    }
+
+    /* ── QUESTION AREA ───────────────────────────────────── */
+    .question-area { padding: 32px 36px 28px; }
+    .question-number {
+      font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--red-600);
+      margin-bottom: 10px;
+    }
+    .question-text {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(17px, 2.5vw, 21px);
+      font-weight: 700; line-height: 1.5;
+      color: var(--gray-900);
+      margin-bottom: 28px;
+    }
+
+    /* ── OPTIONS ─────────────────────────────────────────── */
+    .options { display: flex; flex-direction: column; gap: 12px; }
+    .option {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 16px 20px;
+      border: 2px solid var(--gray-200);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      background: var(--white);
+    }
+    .option:hover { border-color: var(--red-400); background: var(--red-50); }
+    .option.selected { border-color: var(--red-600); background: var(--red-50); }
+    .option.correct  { border-color: #16A34A; background: #F0FDF4; pointer-events: none; }
+    .option.wrong    { border-color: var(--red-600); background: #FEF2F2; pointer-events: none; }
+    .option.dimmed   { opacity: 0.45; pointer-events: none; }
+    .option-key {
+      min-width: 30px; height: 30px;
+      border-radius: 8px;
+      background: var(--gray-100);
+      border: 1.5px solid var(--gray-200);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: var(--gray-700);
+      flex-shrink: 0; transition: all 0.18s ease;
+    }
+    .option.selected .option-key { background: var(--red-600); border-color: var(--red-600); color: var(--white); }
+    .option.correct  .option-key { background: #16A34A; border-color: #16A34A; color: var(--white); }
+    .option.wrong    .option-key { background: var(--red-600); border-color: var(--red-600); color: var(--white); }
+    .option-text { font-size: 15px; line-height: 1.55; color: var(--gray-700); padding-top: 4px; }
+
+    /* ── FEEDBACK ────────────────────────────────────────── */
+    .feedback {
+      margin-top: 20px; padding: 16px 20px;
+      border-radius: 12px;
+      font-size: 14px; line-height: 1.6;
+      display: none;
+    }
+    .feedback.correct { background: #F0FDF4; border: 1px solid #86EFAC; color: #166534; }
+    .feedback.wrong   { background: #FEF2F2; border: 1px solid #FECACA; color: #991B1B; }
+    .feedback.show { display: block; }
+    .feedback strong { display: block; margin-bottom: 4px; font-size: 15px; }
+
+    /* ── ACTION BAR ──────────────────────────────────────── */
+    .action-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 36px 28px; gap: 16px;
+    }
+    .btn {
+      padding: 12px 28px; border-radius: 10px;
+      font-size: 15px; font-weight: 600;
+      cursor: pointer; border: none; transition: all 0.18s ease;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--red-700), var(--red-500));
+      color: var(--white);
+      box-shadow: 0 4px 14px rgba(185,28,28,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(185,28,28,0.45); }
+    .btn-primary:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--gray-200);
+      color: var(--gray-700);
+    }
+    .btn-outline:hover { border-color: var(--red-400); color: var(--red-700); }
+    .score-live {
+      font-size: 13px; color: var(--gray-500);
+      font-weight: 500;
+    }
+    .score-live span { font-weight: 700; color: var(--red-700); }
+
+    /* ── START / RESULT SCREEN ───────────────────────────── */
+    .screen {
+      padding: 60px 40px;
+      text-align: center;
+      display: none;
+    }
+    .screen.active { display: block; }
+    .screen-icon { font-size: 64px; margin-bottom: 20px; }
+    .screen h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px; font-weight: 900;
+      color: var(--gray-900); margin-bottom: 14px;
+    }
+    .screen p { font-size: 16px; color: var(--gray-500); line-height: 1.7; max-width: 480px; margin: 0 auto 32px; }
+
+    .result-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; margin-bottom: 36px;
+    }
+    .result-stat {
+      background: var(--red-50);
+      border: 1.5px solid var(--red-100);
+      border-radius: 14px; padding: 20px 14px;
+    }
+    .result-stat .val {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px; font-weight: 900; color: var(--red-700);
+      line-height: 1;
+    }
+    .result-stat .lbl { font-size: 12px; color: var(--gray-500); margin-top: 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+    .grade-badge {
+      display: inline-block;
+      padding: 10px 32px; border-radius: 999px;
+      font-size: 18px; font-weight: 700;
+      margin-bottom: 28px;
+    }
+    .grade-a  { background: #DCFCE7; color: #166534; }
+    .grade-b  { background: #DBEAFE; color: #1E40AF; }
+    .grade-c  { background: #FEF9C3; color: #854D0E; }
+    .grade-d  { background: #FEE2E2; color: #991B1B; }
+
+    .hidden { display: none !important; }
+
+    /* ── FOOTER ──────────────────────────────────────────── */
+    footer {
+      text-align: center; padding: 28px;
+      color: rgba(255,255,255,0.55);
+      font-size: 13px;
+    }
+    footer a { color: rgba(255,255,255,0.75); text-decoration: none; }
+
+    @media (max-width: 600px) {
+      .question-area { padding: 24px 20px 20px; }
+      .action-bar    { padding: 16px 20px 24px; flex-wrap: wrap; }
+      .result-grid   { grid-template-columns: 1fr 1fr; }
+      .header-inner  { padding: 12px 16px; }
+      .hero          { padding: 48px 16px 32px; }
+      .card-wrap     { padding: 0 12px 60px; }
+      .screen        { padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-icon">🇮🇩</div>
+      <div class="logo-text">
+        <span class="brand">Pusat Studi Kebangsaan</span>
+        <span class="sub">Universitas Nasional</span>
+      </div>
+    </a>
+    <div class="header-badge">Semester VI</div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Ujian Interaktif</div>
+  <h1>Kuis <em>Kemerdekaan</em><br>Indonesia</h1>
+  <p>Uji pemahaman Anda tentang sejarah perjuangan dan proklamasi kemerdekaan Republik Indonesia melalui 40 soal terseleksi.</p>
+  <div class="meta-pills">
+    <span class="pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      ~25 Menit
+    </span>
+    <span class="pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+      40 Soal Pilihan Ganda
+    </span>
+    <span class="pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      Nilai Otomatis
+    </span>
+  </div>
+</div>
+
+<!-- MAIN CARD -->
+<div class="card-wrap">
+  <div class="card">
+
+    <!-- START SCREEN -->
+    <div class="screen active" id="startScreen">
+      <div class="screen-icon">📜</div>
+      <h2>Siap Memulai Kuis?</h2>
+      <p>Kuis ini mencakup materi sejarah kemerdekaan Indonesia dari masa penjajahan hingga era Reformasi. Pastikan Anda dalam kondisi fokus.</p>
+      <button class="btn btn-primary" onclick="startQuiz()" style="margin: 0 auto; font-size: 16px; padding: 14px 40px;">
+        Mulai Kuis
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    <!-- QUIZ SCREEN -->
+    <div id="quizScreen" class="hidden">
+      <div class="progress-bar-wrap">
+        <div class="progress-meta">
+          <span class="progress-label" id="progressLabel">Soal 1 dari 40</span>
+          <span class="progress-count" id="progressPct">0%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+
+      <div class="question-area">
+        <div class="question-number" id="questionNumber">SOAL 1</div>
+        <div class="question-text" id="questionText"></div>
+        <div class="options" id="optionsContainer"></div>
+        <div class="feedback" id="feedbackBox"></div>
+      </div>
+
+      <div class="action-bar">
+        <div class="score-live">Skor saat ini: <span id="liveScore">0</span> / <span id="liveDone">0</span></div>
+        <div style="display:flex; gap:10px;">
+          <button class="btn btn-primary hidden" id="nextBtn" onclick="nextQuestion()">
+            Lanjut
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RESULT SCREEN -->
+    <div class="screen" id="resultScreen">
+      <div class="screen-icon" id="resultEmoji">🏆</div>
+      <h2>Kuis Selesai!</h2>
+      <p id="resultMsg">Berikut adalah ringkasan hasil kuis Anda.</p>
+      <div id="gradeBadge" class="grade-badge"></div>
+      <div class="result-grid">
+        <div class="result-stat">
+          <div class="val" id="resScore">-</div>
+          <div class="lbl">Skor Akhir</div>
+        </div>
+        <div class="result-stat">
+          <div class="val" id="resCorrect">-</div>
+          <div class="lbl">Jawaban Benar</div>
+        </div>
+        <div class="result-stat">
+          <div class="val" id="resWrong">-</div>
+          <div class="lbl">Jawaban Salah</div>
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="resetQuiz()" style="margin: 0 auto; font-size: 15px; padding: 13px 36px;">
+        🔄 Ulangi Kuis
+      </button>
+    </div>
+
+  </div><!-- /card -->
+</div><!-- /card-wrap -->
+
+<footer>
+  &copy; 2025 Pusat Studi Kebangsaan — Materi Sejarah Nasional Indonesia &nbsp;|&nbsp;
+  <a href="#">Kebijakan Privasi</a>
+</footer>
+
+<script>
+const questions = [
+  {
+    q: "Pada tanggal berapa Proklamasi Kemerdekaan Indonesia dibacakan oleh Soekarno-Hatta?",
+    opts: ["16 Agustus 1945", "17 Agustus 1945", "18 Agustus 1945", "15 Agustus 1945"],
+    ans: 1,
+    exp: "Proklamasi Kemerdekaan Indonesia dibacakan pada 17 Agustus 1945 pukul 10.00 WIB di Jalan Pegangsaan Timur No. 56, Jakarta."
+  },
+  {
+    q: "Teks Proklamasi Kemerdekaan Indonesia diketik oleh siapa?",
+    opts: ["Achmad Soebardjo", "Sayuti Melik", "B.M. Diah", "Mohammad Hatta"],
+    ans: 1,
+    exp: "Sayuti Melik adalah tokoh yang mengetik naskah Proklamasi setelah disempurnakan dari tulisan tangan Soekarno."
+  },
+  {
+    q: "Peristiwa Rengasdengklok terjadi pada tanggal berapa?",
+    opts: ["15 Agustus 1945", "16 Agustus 1945", "17 Agustus 1945", "14 Agustus 1945"],
+    ans: 1,
+    exp: "Peristiwa Rengasdengklok terjadi pada 16 Agustus 1945, di mana golongan muda menculik Soekarno-Hatta untuk mempercepat proklamasi."
+  },
+  {
+    q: "Siapakah yang mengibarkan bendera Merah Putih pertama kali saat Proklamasi?",
+    opts: ["Latief Hendraningrat dan Suhud", "Bung Karno dan Bung Hatta", "Fatmawati dan Soekarno", "Wikana dan Chaerul Saleh"],
+    ans: 0,
+    exp: "Latief Hendraningrat dan Suhud adalah yang mengibarkan bendera Merah Putih pertama kali saat upacara proklamasi."
+  },
+  {
+    q: "Naskah Proklamasi dirumuskan di rumah siapa?",
+    opts: ["Achmad Soebardjo", "Laksamana Maeda", "Mohammad Hatta", "Sutan Sjahrir"],
+    ans: 1,
+    exp: "Naskah Proklamasi dirumuskan di rumah Laksamana Tadashi Maeda, seorang perwira tinggi Angkatan Laut Jepang di Jakarta."
+  },
+  {
+    q: "BPUPKI singkatan dari?",
+    opts: [
+      "Badan Penyelidik Usaha-usaha Persiapan Kemerdekaan Indonesia",
+      "Badan Pembentuk Undang-Undang Persiapan Kemerdekaan Indonesia",
+      "Badan Perencanaan Usaha-usaha Pendirian Kemerdekaan Indonesia",
+      "Badan Penyusun Undang-Undang Persiapan Kemerdekaan Indonesia"
+    ],
+    ans: 0,
+    exp: "BPUPKI (Badan Penyelidik Usaha-usaha Persiapan Kemerdekaan Indonesia) dibentuk Jepang pada 29 April 1945."
+  },
+  {
+    q: "Siapa ketua BPUPKI?",
+    opts: ["Soekarno", "Radjiman Wedyodiningrat", "Mohammad Hatta", "Ki Hajar Dewantara"],
+    ans: 1,
+    exp: "Dr. K.R.T. Radjiman Wedyodiningrat adalah ketua BPUPKI yang dilantik pada 28 Mei 1945."
+  },
+  {
+    q: "Pancasila pertama kali dirumuskan oleh Soekarno dalam sidang BPUPKI pada tanggal?",
+    opts: ["29 Mei 1945", "1 Juni 1945", "22 Juni 1945", "18 Agustus 1945"],
+    ans: 1,
+    exp: "Soekarno menyampaikan gagasan Pancasila dalam sidang BPUPKI pertama pada 1 Juni 1945, yang kini diperingati sebagai Hari Lahir Pancasila."
+  },
+  {
+    q: "Piagam Jakarta ditandatangani pada tanggal?",
+    opts: ["1 Juni 1945", "22 Juni 1945", "17 Agustus 1945", "18 Agustus 1945"],
+    ans: 1,
+    exp: "Piagam Jakarta (Jakarta Charter) ditandatangani pada 22 Juni 1945 oleh Panitia Sembilan sebagai kompromi antara golongan nasionalis dan Islam."
+  },
+  {
+    q: "PPKI dibentuk pada tanggal berapa?",
+    opts: ["7 Agustus 1945", "1 Agustus 1945", "15 Agustus 1945", "9 Agustus 1945"],
+    ans: 0,
+    exp: "PPKI (Panitia Persiapan Kemerdekaan Indonesia) dibentuk pada 7 Agustus 1945 sebagai pengganti BPUPKI."
+  },
+  {
+    q: "Siapa yang menjahit bendera Merah Putih yang dikibarkan saat Proklamasi?",
+    opts: ["Ibu Inggit Garnasih", "Ibu Fatmawati", "Ibu Sartika", "Ibu Kartini"],
+    ans: 1,
+    exp: "Fatmawati, istri Soekarno, menjahit bendera Merah Putih pusaka yang dikibarkan saat upacara Proklamasi."
+  },
+  {
+    q: "Jepang menyerah kepada Sekutu pada tanggal?",
+    opts: ["6 Agustus 1945", "9 Agustus 1945", "15 Agustus 1945", "17 Agustus 1945"],
+    ans: 2,
+    exp: "Jepang secara resmi menyerah kepada Sekutu pada 15 Agustus 1945 setelah bom atom dijatuhkan di Hiroshima (6 Agustus) dan Nagasaki (9 Agustus)."
+  },
+  {
+    q: "Konferensi Meja Bundar (KMB) yang menghasilkan pengakuan kedaulatan RI diselenggarakan di?",
+    opts: ["London", "Den Haag", "Amsterdam", "Brussels"],
+    ans: 1,
+    exp: "KMB diselenggarakan di Den Haag, Belanda, dari 23 Agustus hingga 2 November 1949, yang menghasilkan penyerahan kedaulatan kepada Indonesia."
+  },
+  {
+    q: "Agresi Militer Belanda I terjadi pada tahun?",
+    opts: ["1945", "1946", "1947", "1948"],
+    ans: 2,
+    exp: "Agresi Militer Belanda I terjadi pada 21 Juli 1947, melanggar Perjanjian Linggarjati yang ditandatangani sebelumnya."
+  },
+  {
+    q: "Pertempuran Surabaya yang heroik melawan Sekutu terjadi pada tanggal?",
+    opts: ["10 November 1945", "17 Agustus 1945", "5 Oktober 1945", "15 September 1945"],
+    ans: 0,
+    exp: "Pertempuran Surabaya (10 November 1945) adalah salah satu pertempuran terbesar dan terberat dalam revolusi nasional Indonesia, kini diperingati sebagai Hari Pahlawan."
+  },
+  {
+    q: "Siapa tokoh yang terkenal dengan seruan 'Merdeka atau Mati!' di Surabaya?",
+    opts: ["Soekarno", "Bung Tomo", "Jenderal Sudirman", "A.H. Nasution"],
+    ans: 1,
+    exp: "Bung Tomo (Sutomo) terkenal dengan pidato-pidato bakarnya melalui radio yang membangkitkan semangat arek-arek Suroboyo dalam Pertempuran 10 November 1945."
+  },
+  {
+    q: "Perjanjian Renville ditandatangani pada tanggal?",
+    opts: ["25 Maret 1947", "17 Januari 1948", "27 Desember 1949", "22 Juni 1945"],
+    ans: 1,
+    exp: "Perjanjian Renville ditandatangani pada 17 Januari 1948 di atas kapal perang Amerika Serikat USS Renville yang berlabuh di pelabuhan Tanjung Priok."
+  },
+  {
+    q: "Ibukota Republik Indonesia dipindahkan ke Yogyakarta karena?",
+    opts: [
+      "Jakarta terlalu padat penduduknya",
+      "Ancaman militer Belanda terhadap Jakarta",
+      "Perintah dari PBB",
+      "Alasan ekonomi"
+    ],
+    ans: 1,
+    exp: "Ibu kota dipindahkan ke Yogyakarta pada Januari 1946 karena ancaman keamanan dari Belanda yang berusaha menguasai kembali Jakarta."
+  },
+  {
+    q: "Serangan Umum 1 Maret 1949 di Yogyakarta dipimpin oleh?",
+    opts: ["Jenderal Sudirman", "Letnan Kolonel Soeharto", "Bung Tomo", "Sri Sultan HB IX"],
+    ans: 1,
+    exp: "Serangan Umum 1 Maret 1949 dipimpin oleh Letkol Soeharto (kemudian menjadi Presiden ke-2 RI) dengan dukungan Sri Sultan Hamengku Buwono IX."
+  },
+  {
+    q: "Hari TNI diperingati setiap tanggal?",
+    opts: ["5 Oktober", "17 Agustus", "10 November", "1 Juni"],
+    ans: 0,
+    exp: "Hari TNI diperingati setiap 5 Oktober, bertepatan dengan dibentuknya TKR (Tentara Keamanan Rakyat) pada 5 Oktober 1945."
+  },
+  {
+    q: "Siapakah Panglima Besar TKR / TNI pertama Republik Indonesia?",
+    opts: ["A.H. Nasution", "Soeharto", "Jenderal Sudirman", "Urip Sumoharjo"],
+    ans: 2,
+    exp: "Jenderal Soedirman adalah Panglima Besar TKR/TNI pertama, terpilih secara demokratis oleh para perwira pada November 1945."
+  },
+  {
+    q: "Perjanjian Linggarjati mengakui kedaulatan de facto RI atas wilayah?",
+    opts: [
+      "Seluruh bekas Hindia Belanda",
+      "Jawa, Madura, dan Sumatera",
+      "Jawa dan Madura saja",
+      "Jawa, Sumatera, dan Kalimantan"
+    ],
+    ans: 1,
+    exp: "Perjanjian Linggarjati (Maret 1947) mengakui kedaulatan de facto Republik Indonesia atas Jawa, Madura, dan Sumatera."
+  },
+  {
+    q: "Agresi Militer Belanda II (Operasi Gagak) terjadi pada?",
+    opts: ["21 Juli 1947", "19 Desember 1948", "1 Maret 1949", "27 Desember 1949"],
+    ans: 1,
+    exp: "Agresi Militer Belanda II dilancarkan pada 19 Desember 1948, yang berhasil menangkap Soekarno, Hatta, dan pimpinan RI lainnya di Yogyakarta."
+  },
+  {
+    q: "Siapa presiden pertama Republik Indonesia?",
+    opts: ["Mohammad Hatta", "Soekarno", "Sjahrir", "Radjiman Wedyodiningrat"],
+    ans: 1,
+    exp: "Ir. Soekarno dipilih secara aklamasi sebagai Presiden pertama RI oleh PPKI pada 18 Agustus 1945."
+  },
+  {
+    q: "Wakil Presiden pertama Republik Indonesia adalah?",
+    opts: ["Sutan Sjahrir", "Radjiman Wedyodiningrat", "Mohammad Hatta", "Adam Malik"],
+    ans: 2,
+    exp: "Drs. Mohammad Hatta dipilih sebagai Wakil Presiden pertama RI oleh PPKI pada 18 Agustus 1945, bersamaan dengan pemilihan Soekarno sebagai Presiden."
+  },
+  {
+    q: "Undang-Undang Dasar 1945 disahkan oleh PPKI pada tanggal?",
+    opts: ["17 Agustus 1945", "18 Agustus 1945", "22 Juni 1945", "1 Juni 1945"],
+    ans: 1,
+    exp: "UUD 1945 disahkan oleh PPKI pada 18 Agustus 1945, sehari setelah Proklamasi Kemerdekaan, beserta pemilihan presiden dan wakil presiden."
+  },
+  {
+    q: "Maklumat Pemerintah 3 November 1945 menyatakan tentang?",
+    opts: [
+      "Pembentukan Tentara Nasional Indonesia",
+      "Pembentukan partai-partai politik",
+      "Pelaksanaan Pemilu pertama",
+      "Pengakuan kedaulatan oleh PBB"
+    ],
+    ans: 1,
+    exp: "Maklumat 3 November 1945 mendorong pembentukan partai-partai politik dalam rangka memperkuat demokrasi Indonesia yang baru merdeka."
+  },
+  {
+    q: "VOC (Vereenigde Oost-Indische Compagnie) dibubarkan pada tahun?",
+    opts: ["1799", "1830", "1900", "1850"],
+    ans: 0,
+    exp: "VOC dibubarkan pada 31 Desember 1799 karena kebangkrutan dan korupsi yang merajalela, asetnya kemudian diambil alih oleh pemerintah Belanda."
+  },
+  {
+    q: "Sistem Tanam Paksa (Cultuurstelsel) diterapkan oleh Gubernur Jenderal?",
+    opts: ["Herman Willem Daendels", "Thomas Stamford Raffles", "Johannes van den Bosch", "Jan Pieterszoon Coen"],
+    ans: 2,
+    exp: "Sistem Tanam Paksa diperkenalkan oleh Gubernur Jenderal Johannes van den Bosch pada 1830, mewajibkan rakyat menanam tanaman ekspor untuk Belanda."
+  },
+  {
+    q: "Kongres Pemuda II yang menghasilkan Sumpah Pemuda diselenggarakan pada?",
+    opts: ["28 Oktober 1927", "28 Oktober 1928", "20 Mei 1908", "17 Agustus 1945"],
+    ans: 1,
+    exp: "Kongres Pemuda II berlangsung 27–28 Oktober 1928 di Batavia, menghasilkan ikrar Sumpah Pemuda: satu nusa, satu bangsa, satu bahasa."
+  },
+  {
+    q: "Organisasi pergerakan nasional modern pertama di Indonesia adalah?",
+    opts: ["Sarekat Islam", "Budi Utomo", "Indische Partij", "PNI"],
+    ans: 1,
+    exp: "Budi Utomo yang berdiri pada 20 Mei 1908 dianggap sebagai organisasi pergerakan nasional modern pertama, tanggalnya kini diperingati sebagai Hari Kebangkitan Nasional."
+  },
+  {
+    q: "Perang Diponegoro atau Perang Jawa berlangsung dari tahun?",
+    opts: ["1800–1830", "1825–1830", "1830–1870", "1815–1820"],
+    ans: 1,
+    exp: "Perang Diponegoro berlangsung 1825–1830, merupakan salah satu perang terbesar melawan penjajahan Belanda yang dipimpin oleh Pangeran Diponegoro."
+  },
+  {
+    q: "Cut Nyak Dhien adalah pahlawan perempuan dari daerah?",
+    opts: ["Sumatera Barat", "Sulawesi Utara", "Aceh", "Jawa Barat"],
+    ans: 2,
+    exp: "Cut Nyak Dhien adalah pahlawan nasional perempuan dari Aceh yang berjuang melawan penjajahan Belanda dalam Perang Aceh (1873–1904)."
+  },
+  {
+    q: "Soekarno ditangkap Belanda dan diasingkan ke mana pada tahun 1929?",
+    opts: ["Bangka", "Ende, Flores", "Boven Digul", "Banda Neira"],
+    ans: 1,
+    exp: "Soekarno ditangkap Belanda dan diasingkan ke Ende, Flores (1934) setelah sebelumnya dipenjara di Sukamiskin, Bandung (1929–1931)."
+  },
+  {
+    q: "Isi pokok Romusha di masa penjajahan Jepang adalah?",
+    opts: [
+      "Sistem kerja paksa rakyat untuk kepentingan militer Jepang",
+      "Pembentukan tentara PETA",
+      "Penarikan pajak bumi untuk Jepang",
+      "Penyerahan hasil pertanian kepada Jepang"
+    ],
+    ans: 0,
+    exp: "Romusha adalah sistem kerja paksa di mana rakyat Indonesia dipaksa bekerja untuk membangun infrastruktur militer Jepang, banyak yang meninggal akibat kondisi kerja yang buruk."
+  },
+  {
+    q: "PETA (Pembela Tanah Air) merupakan organisasi militer yang dibentuk oleh?",
+    opts: ["Pemerintah RI", "Penjajah Belanda", "Penjajah Jepang", "Inggris"],
+    ans: 2,
+    exp: "PETA dibentuk oleh Jepang pada 3 Oktober 1943 untuk membantu pertahanan Jawa dari serangan Sekutu, namun kemudian menjadi cikal bakal TNI."
+  },
+  {
+    q: "Pemberontakan PETA di Blitar dipimpin oleh?",
+    opts: ["Supriyadi", "Sudirman", "Urip Sumoharjo", "Ahmad Yani"],
+    ans: 0,
+    exp: "Pemberontakan PETA di Blitar pada Februari 1945 dipimpin oleh Shodancho Supriyadi yang menentang eksploitasi Jepang terhadap rakyat Indonesia."
+  },
+  {
+    q: "Kabinet pertama Republik Indonesia dipimpin oleh Perdana Menteri?",
+    opts: ["Mohammad Hatta", "Sutan Sjahrir", "Amir Sjarifuddin", "Presidensial Soekarno"],
+    ans: 1,
+    exp: "Sutan Sjahrir menjadi Perdana Menteri pertama RI sejak November 1945, memimpin kabinet parlementer setelah maklumat pemerintah mengubah sistem dari presidensial."
+  },
+  {
+    q: "Bangsa Eropa pertama yang berhasil mencapai Kepulauan Maluku (Nusantara) adalah?",
+    opts: ["Belanda", "Inggris", "Portugis", "Spanyol"],
+    ans: 2,
+    exp: "Portugis adalah bangsa Eropa pertama yang tiba di Maluku pada 1512 di bawah pimpinan Francisco Serrão, menguasai perdagangan rempah-rempah."
+  },
+  {
+    q: "Tokoh yang dikenal sebagai 'Bapak Pendidikan Nasional' Indonesia adalah?",
+    opts: ["Ki Hajar Dewantara", "Radjiman Wedyodiningrat", "Wahidin Sudirohusodo", "Mohammad Syafei"],
+    ans: 0,
+    exp: "Ki Hajar Dewantara mendirikan Taman Siswa pada 1922 dan dikenal sebagai Bapak Pendidikan Nasional; semboyannya Ing ngarsa sung tuladha, Ing madya mangun karsa, Tut wuri handayani."
+  },
+  {
+    q: "Pengakuan kedaulatan Republik Indonesia oleh Belanda secara resmi terjadi pada?",
+    opts: ["17 Agustus 1945", "17 Januari 1948", "27 Desember 1949", "5 Juli 1959"],
+    ans: 2,
+    exp: "Belanda secara resmi mengakui dan menyerahkan kedaulatan kepada Indonesia pada 27 Desember 1949, hasil dari Konferensi Meja Bundar."
+  }
+];
+
+let current = 0;
+let score   = 0;
+let answered = 0;
+let answered_flags = [];
+
+function startQuiz() {
+  document.getElementById('startScreen').classList.remove('active');
+  document.getElementById('quizScreen').classList.remove('hidden');
+  answered_flags = new Array(questions.length).fill(false);
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = questions[current];
+  const total = questions.length;
+
+  // progress
+  document.getElementById('progressLabel').textContent = `Soal ${current+1} dari ${total}`;
+  const pct = Math.round((answered / total) * 100);
+  document.getElementById('progressPct').textContent = pct + '%';
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('questionNumber').textContent = `SOAL ${current+1}`;
+  document.getElementById('questionText').textContent = q.q;
+  document.getElementById('liveScore').textContent = score;
+  document.getElementById('liveDone').textContent = answered;
+
+  const keys = ['A','B','C','D'];
+  const container = document.getElementById('optionsContainer');
+  container.innerHTML = '';
+  q.opts.forEach((opt, i) => {
+    const div = document.createElement('div');
+    div.className = 'option';
+    div.innerHTML = `<div class="option-key">${keys[i]}</div><div class="option-text">${opt}</div>`;
+    div.addEventListener('click', () => selectOption(i, div));
+    container.appendChild(div);
+  });
+
+  const fb = document.getElementById('feedbackBox');
+  fb.className = 'feedback';
+  fb.textContent = '';
+  document.getElementById('nextBtn').classList.add('hidden');
+}
+
+function selectOption(idx, el) {
+  if (answered_flags[current]) return;
+  answered_flags[current] = true;
+  answered++;
+
+  const q = questions[current];
+  const opts = document.querySelectorAll('.option');
+  opts.forEach((o, i) => {
+    if (i === q.ans) { o.classList.add('correct'); }
+    else if (i === idx && idx !== q.ans) { o.classList.add('wrong'); }
+    else { o.classList.add('dimmed'); }
+  });
+
+  const fb = document.getElementById('feedbackBox');
+  if (idx === q.ans) {
+    score++;
+    fb.className = 'feedback correct show';
+    fb.innerHTML = `<strong>✅ Benar!</strong>${q.exp}`;
+  } else {
+    fb.className = 'feedback wrong show';
+    fb.innerHTML = `<strong>❌ Kurang Tepat.</strong>${q.exp}`;
+  }
+
+  document.getElementById('liveScore').textContent = score;
+  document.getElementById('liveDone').textContent  = answered;
+
+  // Update progress
+  const pct = Math.round((answered / questions.length) * 100);
+  document.getElementById('progressPct').textContent = pct + '%';
+  document.getElementById('progressFill').style.width = pct + '%';
+
+  document.getElementById('nextBtn').classList.remove('hidden');
+  document.getElementById('nextBtn').textContent = current < questions.length - 1 ? 'Soal Berikutnya →' : 'Lihat Hasil →';
+}
+
+function nextQuestion() {
+  current++;
+  if (current >= questions.length) {
+    showResult();
+    return;
+  }
+  document.getElementById('nextBtn').classList.add('hidden');
+  renderQuestion();
+}
+
+function showResult() {
+  document.getElementById('quizScreen').classList.add('hidden');
+  const rs = document.getElementById('resultScreen');
+  rs.classList.add('active');
+
+  const total  = questions.length;
+  const pct    = Math.round((score / total) * 100);
+  const wrong  = total - score;
+
+  document.getElementById('resScore').textContent   = pct + '%';
+  document.getElementById('resCorrect').textContent = score;
+  document.getElementById('resWrong').textContent   = wrong;
+
+  let grade, cls, emoji, msg;
+  if (pct >= 85)       { grade='A'; cls='grade-a'; emoji='🏆'; msg='Luar biasa! Anda menguasai materi kemerdekaan Indonesia dengan sangat baik.'; }
+  else if (pct >= 70)  { grade='B'; cls='grade-b'; emoji='🥈'; msg='Bagus! Pemahaman Anda sudah di atas rata-rata. Terus tingkatkan!'; }
+  else if (pct >= 55)  { grade='C'; cls='grade-c'; emoji='📚'; msg='Cukup baik. Masih ada beberapa materi yang perlu diperdalam.'; }
+  else                  { grade='D'; cls='grade-d'; emoji='📖'; msg='Jangan menyerah! Pelajari kembali materi kemerdekaan Indonesia dan coba lagi.'; }
+
+  document.getElementById('resultEmoji').textContent = emoji;
+  document.getElementById('resultMsg').textContent   = msg;
+  const badge = document.getElementById('gradeBadge');
+  badge.className  = 'grade-badge ' + cls;
+  badge.textContent = `Predikat: ${grade} (${pct}%)`;
+}
+
+function resetQuiz() {
+  current  = 0;
+  score    = 0;
+  answered = 0;
+  answered_flags = [];
+  document.getElementById('resultScreen').classList.remove('active');
+  document.getElementById('quizScreen').classList.remove('hidden');
+  document.getElementById('progressFill').style.width = '0%';
+  renderQuestion();
+}
+</script>
+</body>
+</html>
