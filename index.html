@@ -3,14 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashboard Portal Akademik | Nahiruddin</title>
+  <title>Kuis Pancasila | Portal Edukasi Kebangsaan</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg-dark-blue: #0A2540;
-      --bg-active-blue: #0D3B66;
-      --border-green: #22C55E;
-      --text-gray: #94A3B8;
+      --bg-gradient-start: #881337; /* Merah Marun Gelap */
+      --bg-gradient-end: #450A0A;   /* Merah Tua Sangat Gelap */
+      --accent-red: #DC2626;        /* Merah Cerah Utama */
+      --hover-red: #991B1B;         /* Merah Gelap saat Hover */
+      --light-red: #FFF5F5;         /* Latar Belakang Konten Ringan */
+      --text-pink-gray: #FCA5A5;    /* Teks Menu Sidebar */
       --text-main: #0F172A;
       --bg-light: #F1F5F9;
       --white: #FFFFFF;
@@ -31,10 +33,10 @@
       overflow: hidden;
     }
 
-    /* ── SIDEBAR (KIRI) ─────────────────────────────────── */
+    /* ── SIDEBAR (KIRI) GRADASI MERAH ───────────────────── */
     .sidebar {
       width: 280px;
-      background-color: var(--bg-dark-blue);
+      background: linear-gradient(180deg, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 100%);
       color: var(--white);
       display: flex;
       flex-direction: column;
@@ -49,19 +51,21 @@
     }
 
     .user-avatar {
-      font-size: 40px;
+      font-size: 45px;
       margin-bottom: 8px;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
     }
 
     .user-name {
-      font-size: 20px;
+      font-size: 22px;
       font-weight: 700;
       letter-spacing: 0.5px;
+      color: #FDE047; /* Warna Emas untuk Judul Utama */
     }
 
     .user-role {
       font-size: 13px;
-      color: var(--text-gray);
+      color: var(--text-pink-gray);
       margin-top: 4px;
     }
 
@@ -70,7 +74,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1px;
-      color: var(--text-gray);
+      color: var(--text-pink-gray);
       margin: 24px 0 12px 12px;
     }
 
@@ -96,12 +100,13 @@
     }
 
     .nav-item:hover {
-      background-color: rgba(255, 255, 255, 0.05);
+      background-color: rgba(255, 255, 255, 0.08);
     }
 
     .nav-item.active {
-      background-color: var(--bg-active-blue);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background-color: var(--accent-red);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-weight: 600;
     }
 
     .nav-icon {
@@ -113,7 +118,7 @@
     .sidebar-footer {
       text-align: center;
       font-size: 11px;
-      color: var(--text-gray);
+      color: var(--text-pink-gray);
       line-height: 1.5;
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       padding-top: 20px;
@@ -134,30 +139,30 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      color: var(--bg-dark-blue);
+      color: var(--bg-gradient-start);
       margin-bottom: 24px;
     }
 
-    /* Kapsul Putih dengan Border Atas Hijau */
+    /* Kapsul Putih dengan Border Atas Merah */
     .portal-card {
       background-color: var(--white);
       border-radius: 24px;
-      border-top: 8px solid var(--border-green);
+      border-top: 8px solid var(--accent-red);
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-      padding: 60px 40px;
+      padding: 50px 40px;
       flex-grow: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      text-align: center;
+      justify-content: flex-start;
     }
 
     /* ── KONTEN HALAMAN ─────────────────────────────────── */
     .page-section {
       display: none;
       width: 100%;
-      max-width: 600px;
+      max-width: 650px;
+      text-align: center;
     }
 
     .page-section.active {
@@ -166,24 +171,24 @@
 
     .center-icon {
       font-size: 72px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       display: inline-block;
     }
 
     .welcome-title {
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 700;
-      color: var(--bg-dark-blue);
-      margin-bottom: 16px;
+      color: var(--bg-gradient-start);
+      margin-bottom: 12px;
     }
 
     .welcome-desc {
-      font-size: 16px;
+      font-size: 15px;
       color: #64748B;
       line-height: 1.6;
+      margin-bottom: 20px;
     }
 
-    /* Pengaturan List Item pada Materi/Kuis */
     .item-list {
       text-align: left;
       margin-top: 24px;
@@ -203,20 +208,62 @@
     }
 
     .list-btn {
-      background-color: var(--bg-dark-blue);
+      background-color: var(--accent-red);
       color: var(--white);
       border: none;
-      padding: 8px 16px;
-      border-radius: 6px;
+      padding: 8px 20px;
+      border-radius: 8px;
       font-size: 13px;
+      font-weight: 600;
       cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .list-btn:hover {
+      background-color: var(--hover-red);
+    }
+
+    /* Gaya Spesifik Opsi Kuis */
+    .quiz-opt-btn {
+      width: 100%;
+      text-align: left;
+      background: var(--bg-light);
+      border: 2px solid transparent;
+      padding: 14px 18px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .quiz-opt-btn:hover {
+      background: #FFEBEB;
+      border-color: var(--text-pink-gray);
+    }
+
+    /* Gaya Tabel Transkrip Nilai */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      margin-top: 15px;
+    }
+    th, td {
+      padding: 12px;
+      border-bottom: 1px solid #E2E8F0;
+      font-size: 14px;
+    }
+    th {
+      background-color: #F8FAFC;
+      color: #475569;
+      font-weight: 700;
     }
 
     @media (max-width: 768px) {
       body { flex-direction: column; overflow: auto; }
       .sidebar { width: 100%; }
       .main-content { padding: 20px; }
-      .portal-card { padding: 40px 20px; }
+      .portal-card { padding: 30px 15px; }
     }
   </style>
 </head>
@@ -225,12 +272,12 @@
   <div class="sidebar">
     <div>
       <div class="user-profile">
-        <div class="user-avatar">🏛️</div>
-        <div class="user-name">Nahiruddin</div>
-        <div class="user-role">Admin Perkantoran Digital - PNUP</div>
+        <div class="user-avatar">🦅</div>
+        <div class="user-name">Kuis Pancasila</div>
+        <div class="user-role">Media Edukasi & Studi Kebangsaan</div>
       </div>
 
-      <div class="menu-title">Akademik & Pembelajaran</div>
+      <div class="menu-title">Materi & Evaluasi</div>
       <div class="nav-menu">
         <div class="nav-item active" onclick="switchPage('materi', this)">
           <span class="nav-icon">📖</span>
@@ -248,61 +295,115 @@
     </div>
 
     <div class="sidebar-footer">
-      © 2026 - Nahiruddin<br>APD - PNUP
+      © 2026 - Kuis Pancasila<br>EduLearn Kebangsaan
     </div>
   </div>
 
   <div class="main-content">
     <div class="top-bar">
-      <span>☗</span> <span id="section-title">Materi</span>
+      <span>🇮🇩</span> <span id="section-title">Materi</span>
     </div>
 
     <div class="portal-card">
       
       <div id="page-materi" class="page-section active">
-        <div class="center-icon">🎓</div>
-        <h2 class="welcome-title">Modul Pembelajaran</h2>
-        <p class="welcome-desc">Silakan pilih dan pelajari ragam materi administrasi perkantoran digital yang tersedia di bawah ini.</p>
-        <div class="item-list">
-          <div class="list-card">
-            <span>Bab 1: Pengantar Arsip Digital</span>
-            <button class="list-btn">Buka Modul</button>
+        <div id="materi-list-view">
+          <div class="center-icon">📜</div>
+          <h2 class="welcome-title">Modul Pembelajaran Pancasila</h2>
+          <p class="welcome-desc">Pilih modul di bawah ini untuk memahami sejarah lahirnya dasar negara Indonesia.</p>
+          <div class="item-list">
+            <div class="list-card">
+              <span>Bab 1: Sejarah Perumusan Pancasila</span>
+              <button class="list-btn" onclick="bukaModul('Bab 1: Sejarah Perumusan Pancasila', 'Pancasila dirumuskan melalui rangkaian sidang BPUPKI (Badan Penyelidik Usaha-Usaha Persiapan Kemerdekaan Indonesia). Istilah Pancasila pertama kali diperkenalkan secara resmi oleh Ir. Soekarno dalam pidatonya pada tanggal 1 Juni 1945. Rumusan tersebut kemudian dimatangkan oleh Panitia Sembilan dalam Piagam Jakarta sebelum akhirnya disahkan secara konstitusional pada tanggal 18 Agustus 1945 di dalam UUD 1945.')">Buka Modul</button>
+            </div>
+            <div class="list-card">
+              <span>Bab 2: Makna Lambang & Perisai Garuda</span>
+              <button class="list-btn" onclick="bukaModul('Bab 2: Makna Lambang & Perisai Garuda', 'Perisai pada dada Burung Garuda memuat 5 simbol suci: Bintang emas mencerminkan sila ke-1 (Ketuhanan), Rantai baja melambangkan sila ke-2 (Kemanusiaan), Pohon Beringin melambangkan sila ke-3 (Persatuan), Kepala Banteng melambangkan sila ke-4 (Kerakyatan/Musyawarah), serta Padi dan Kapas melambangkan sila ke-5 (Keadilan Sosial).')">Buka Modul</button>
+            </div>
           </div>
-          <div class="list-card">
-            <span>Bab 2: Otomatisasi Perkantoran</span>
-            <button class="list-btn">Buka Modul</button>
-          </div>
+        </div>
+        
+        <div id="materi-read-view" style="display:none; text-align: left; width: 100%;">
+          <button class="list-btn" style="background-color: #64748B; margin-bottom: 20px;" onclick="kembaliKeMateriList()">← Kembali Ke Modul</button>
+          <h3 id="read-title" style="margin-bottom: 15px; color: var(--bg-gradient-start); font-size: 22px;"></h3>
+          <p id="read-body" style="line-height: 1.7; color: #334155; background: var(--light-red); padding: 20px; border-radius: 12px; border-left: 5px solid var(--accent-red); font-size: 15px;"></p>
         </div>
       </div>
 
       <div id="page-kuis" class="page-section">
-        <div class="center-icon">✍️</div>
-        <h2 class="welcome-title">Evaluasi & Kuis</h2>
-        <p class="welcome-desc">Uji sejauh mana pemahaman kognitif Anda dengan mengikuti ujian atau kuis interaktif secara terjadwal.</p>
-        <div class="item-list">
-          <div class="list-card">
-            <span>Kuis Mingguan Ke-1</span>
-            <button class="list-btn" style="background-color: var(--border-green);">Mulai</button>
+        <div id="quiz-start-box">
+          <div class="center-icon">✍️</div>
+          <h2 class="welcome-title">Evaluasi Kuis Pancasila</h2>
+          <p class="welcome-desc">Uji wawasan kebangsaan dan pemahaman nilai ideologi Pancasila Anda lewat 3 soal pilihan ganda interaktif berikut.</p>
+          <button class="list-btn" style="padding: 12px 36px; font-size: 15px;" onclick="mulaiKuisApp()">Mulai Kuis Sekarang</button>
+        </div>
+
+        <div id="quiz-play-box" style="display: none; text-align: left; width: 100%;">
+          <div style="display: flex; justify-content: space-between; font-weight: 700; color: var(--bg-gradient-start); margin-bottom: 15px;">
+            <span id="quiz-status">Soal 1 dari 3</span>
+            <span id="quiz-score">Skor Saat Ini: 0</span>
           </div>
-          <div class="list-card">
-            <span>Ujian Tengah Semester</span>
-            <button class="list-btn" style="background: #EF4444;">Terkunci</button>
-          </div>
+          <h4 id="quiz-question-text" style="font-size: 18px; margin-bottom: 20px; color: var(--text-main); line-height: 1.4;"></h4>
+          <div id="quiz-options-container" style="display: flex; flex-direction: column; gap: 10px;">
+            </div>
+        </div>
+
+        <div id="quiz-result-box" style="display: none;">
+          <div class="center-icon">🎉</div>
+          <h2 class="welcome-title">Kuis Selesai!</h2>
+          <p class="welcome-desc" id="quiz-summary-text" style="font-size: 18px; font-weight: 600; color: #15803D;"></p>
+          <button class="list-btn" style="background-color: #64748B;" onclick="resetKuisApp()">Coba Ulang Kuis</button>
         </div>
       </div>
 
       <div id="page-nilai" class="page-section">
         <div class="center-icon">🏆</div>
-        <h2 class="welcome-title">Rekapitulasi Nilai</h2>
-        <p class="welcome-desc">Berikut adalah daftar perolehan nilai akumulasi tugas, kuis, dan ujian Anda pada semester berjalan.</p>
-        <div class="item-list">
-          <div class="list-card">
-            <span>Nilai Kuis Ke-1</span>
-            <span style="color: var(--border-green); font-weight: 700; font-size: 18px;">95 / 100</span>
+        <h2 class="welcome-title">Transkrip Nilai Kebangsaan</h2>
+        <p class="welcome-desc">Berikut adalah rekapitulasi capaian nilai akademis Anda pada topik materi Pancasila.</p>
+        
+        <div style="width: 100%; overflow-x: auto; margin-bottom: 30px;">
+          <table>
+            <thead>
+              <tr>
+                <th>Komponen Penilaian</th>
+                <th>Bobot</th>
+                <th>Nilai Anda</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Tugas Resume Tokoh BPUPKI</td>
+                <td>30%</td>
+                <td style="font-weight: 700; color: #16A34A;">95</td>
+              </tr>
+              <tr>
+                <td>Ujian Tengah Semester (UTS)</td>
+                <td>35%</td>
+                <td style="font-weight: 700; color: #16A34A;">88</td>
+              </tr>
+              <tr>
+                <td>Ujian Akhir Semester (UAS)</td>
+                <td>35%</td>
+                <td style="font-weight: 700; color: #16A34A;">90</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="background-color: var(--light-red); border: 1px dashed var(--text-pink-gray); border-radius: 14px; padding: 20px; width: 100%; text-align: left;">
+          <h4 style="color: var(--bg-gradient-start); margin-bottom: 8px;">🧮 Alat Hitung Simulasi Nilai Akhir</h4>
+          <p style="font-size: 13px; color: #475569; margin-bottom: 16px;">Masukkan prediksi hasil kuis tambahan Anda di bawah untuk mengukur proyeksi akumulasi total kelulusan kelas studi kebangsaan.</p>
+          
+          <div style="display: flex; flex-wrap: wrap; gap: 15px; align-items: center;">
+            <div>
+              <label style="font-size: 13px; font-weight: 600; display:block; margin-bottom: 4px;">Prediksi Nilai Kuis Tambahan:</label>
+              <input type="number" id="simulasi-input" value="90" min="0" max="100" style="padding: 8px 12px; width: 100px; border-radius: 6px; border: 1px solid #CBD5E1; font-weight: 600;">
+            </div>
+            <button class="list-btn" style="margin-top: 18px;" onclick="hitungSimulasiPredikat()">Kalkulasikan Nilai</button>
           </div>
-          <div class="list-card">
-            <span>Rata-Rata Kelas</span>
-            <span style="color: var(--bg-dark-blue); font-weight: 700; font-size: 18px;">88.5</span>
+          
+          <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid #E2E8F0; font-weight: 700; font-size: 15px; color: var(--bg-gradient-start);">
+            Hasil Estimasi Akumulasi: <span id="simulasi-hasil" style="color: var(--accent-red); font-weight: 700;">90.80 (Predikat Kategori A)</span>
           </div>
         </div>
       </div>
@@ -311,26 +412,121 @@
   </div>
 
   <script>
+    /* ── LOGIK SWITCH HALAMAN DASHBOARD ── */
     function switchPage(pageId, element) {
-      // Sembunyikan semua section konten
       document.querySelectorAll('.page-section').forEach(section => {
         section.classList.remove('active');
       });
-      
-      // Matikan status active pada tombol menu di sidebar
       document.querySelectorAll('.nav-item').forEach(item => {
         item.classList.remove('active');
       });
 
-      // Tampilkan section yang dipilih
       document.getElementById('page-' + pageId).classList.add('active');
-      
-      // Aktifkan menu yang sedang diklik
       element.classList.add('active');
 
-      // Ubah judul di bagian top bar kanan sesuai menu yang aktif
       const formatTitle = pageId.charAt(0).toUpperCase() + pageId.slice(1);
       document.getElementById('section-title').textContent = formatTitle;
+    }
+
+    /* ── INTERAKSI FITUR 1: MATERI READ DYNAMIC ── */
+    function bukaModul(title, text) {
+      document.getElementById('materi-list-view').style.display = 'none';
+      document.getElementById('materi-read-view').style.display = 'block';
+      document.getElementById('read-title').textContent = title;
+      document.getElementById('read-body').textContent = text;
+    }
+    function kembaliKeMateriList() {
+      document.getElementById('materi-read-view').style.display = 'none';
+      document.getElementById('materi-list-view').style.display = 'block';
+    }
+
+    /* ── INTERAKSI FITUR 2: CORE LOGIC KUIS PANCASILA ── */
+    const databaseKuis = [
+      {
+        pertanyaan: "Sila ketiga Pancasila, 'Persatuan Indonesia', dilambangkan pada perisai Garuda dengan simbol...",
+        pilihan: ["Bintang Emas", "Rantai Baja", "Pohon Beringin", "Kepala Banteng"],
+        jawabanBenar: 2
+      },
+      {
+        pertanyaan: "Setiap tanggal berapakah masyarakat Indonesia memperingati Hari Lahir Pancasila secara nasional?",
+        pilihan: ["1 Juni", "22 Juni", "17 Agustus", "1 Oktober"],
+        jawabanBenar: 0
+      },
+      {
+        pertanyaan: "Simbol Padi dan Kapas mencerminkan nilai luhur Pancasila, tepatnya pada sila keberapa?",
+        pilihan: ["Sila Kedua", "Sila Ketiga", "Sila Keempat", "Sila Kelima"],
+        jawabanBenar: 3
+      }
+    ];
+
+    let indeksSoal = 0;
+    let akumulasiSkor = 0;
+
+    function mulaiKuisApp() {
+      document.getElementById('quiz-start-box').style.display = 'none';
+      document.getElementById('quiz-play-box').style.display = 'block';
+      tampilkanSoalAktif();
+    }
+
+    function tampilkanSoalAktif() {
+      const dataSoal = databaseKuis[indeksSoal];
+      document.getElementById('quiz-status').textContent = `Soal ${indeksSoal + 1} dari ${databaseKuis.length}`;
+      document.getElementById('quiz-score').textContent = `Skor Saat Ini: ${akumulasiSkor}`;
+      document.getElementById('quiz-question-text').textContent = dataSoal.pertanyaan;
+
+      const containerOpsi = document.getElementById('quiz-options-container');
+      containerOpsi.innerHTML = '';
+
+      dataSoal.pilihan.forEach((opsi, index) => {
+        const tombolOpsi = document.createElement('button');
+        tombolOpsi.className = 'quiz-opt-btn';
+        tombolOpsi.textContent = `${String.fromCharCode(65 + index)}. ${opsi}`;
+        tombolOpsi.onclick = () => verifikasiJawabanUser(index);
+        containerOpsi.appendChild(tombolOpsi);
+      });
+    }
+
+    function verifikasiJawabanUser(indexDipilih) {
+      if (indexDipilih === databaseKuis[indeksSoal].jawabanBenar) {
+        akumulasiSkor += 33; 
+      }
+      
+      indeksSoal++;
+      if (indeksSoal < databaseKuis.length) {
+        tampilkanSoalAktif();
+      } else {
+        if(akumulasiSkor > 90) akumulasiSkor = 100;
+        akhiriKuisApp();
+      }
+    }
+
+    function akhiriKuisApp() {
+      document.getElementById('quiz-play-box').style.display = 'none';
+      document.getElementById('quiz-result-box').style.display = 'block';
+      document.getElementById('quiz-summary-text').textContent = `Selamat! Anda Menyelesaikan Kuis Pancasila Dengan Nilai Akhir: ${akumulasiSkor} / 100`;
+    }
+
+    function resetKuisApp() {
+      indeksSoal = 0;
+      akumulasiSkor = 0;
+      document.getElementById('quiz-result-box').style.display = 'none';
+      document.getElementById('quiz-start-box').style.display = 'block';
+    }
+
+    /* ── INTERAKSI FITUR 3: KALKULATOR SIMULASI NILAI AKHIR ── */
+    function hitungSimulasiPredikat() {
+      const nilaiKuisTambahan = parseFloat(document.getElementById('simulasi-input').value) || 0;
+      // Bobot nilai default transkrip (95, 88, 90)
+      const rataRataBase = (95 * 0.3) + (88 * 0.35) + (90 * 0.35);
+      const nilaiFinalKalkulasi = (rataRataBase * 0.8) + (nilaiKuisTambahan * 0.2);
+      
+      let kategoriPredikat = "E (Mengulang)";
+      if (nilaiFinalKalkulasi >= 85) kategoriPredikat = "A (Sangat Memuaskan)";
+      else if (nilaiFinalKalkulasi >= 75) kategoriPredikat = "B (Baik)";
+      else if (nilaiFinalKalkulasi >= 60) kategoriPredikat = "C (Cukup)";
+      else if (nilaiFinalKalkulasi >= 50) kategoriPredikat = "D (Kurang)";
+
+      document.getElementById('simulasi-hasil').textContent = `${nilaiFinalKalkulasi.toFixed(2)} (Kategori ${kategoriPredikat})`;
     }
   </script>
 </body>
