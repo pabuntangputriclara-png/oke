@@ -29,8 +29,8 @@
       background-color: var(--bg-light);
       color: var(--text-main);
       display: flex;
-      min-height: 100vh;
-      overflow: hidden;
+      height: 100vh; /* Mengunci tinggi body pas sesuai layar desktop */
+      overflow: hidden; /* Mencegah seluruh halaman double-scroll */
     }
 
     /* ── SIDEBAR (KIRI) ── */
@@ -43,6 +43,7 @@
       justify-content: space-between;
       padding: 32px 20px;
       flex-shrink: 0;
+      height: 100%;
     }
 
     .user-profile {
@@ -129,7 +130,8 @@
       padding: 40px;
       display: flex;
       flex-direction: column;
-      overflow-y: auto;
+      height: 100%;
+      overflow-y: auto; /* Mengaktifkan fungsi scroll internal khusus konten jika melebihi layar desktop */
     }
 
     .top-bar {
@@ -140,6 +142,7 @@
       gap: 10px;
       color: var(--bg-gradient-start);
       margin-bottom: 24px;
+      flex-shrink: 0;
     }
 
     .portal-card {
@@ -153,6 +156,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
+      margin-bottom: 20px; /* Jarak aman bawah */
     }
 
     /* ── KONTEN HALAMAN ── */
@@ -259,11 +263,25 @@
       font-weight: 700;
     }
 
+    /* Perbaikan Khusus Layar Responsive / Mobile */
     @media (max-width: 768px) {
-      body { flex-direction: column; overflow: auto; }
-      .sidebar { width: 100%; }
-      .main-content { padding: 20px; }
-      .portal-card { padding: 30px 15px; }
+      body { 
+        flex-direction: column; 
+        overflow: auto; 
+        height: auto; 
+      }
+      .sidebar { 
+        width: 100%; 
+        height: auto; 
+      }
+      .main-content { 
+        padding: 20px; 
+        height: auto; 
+        overflow-y: visible; 
+      }
+      .portal-card { 
+        padding: 30px 15px; 
+      }
     }
   </style>
 </head>
@@ -452,7 +470,7 @@
       { pertanyaan: "14. Semboyan nasional 'Bhinneka Tunggal Ika' yang tertulis pada pita cengkeraman Garuda memiliki arti...", pilihan: ["Bersatu kita teguh bercerai kita runtuh", "Berbeda-beda tetapi tetap satu jua", "Satu nusa satu bangsa satu bahasa", "Sama rata dan sama rasa senasib"], jawabanBenar: 1 },
       { pertanyaan: "15. Semboyan Bhinneka Tunggal Ika diambil kuno dari kutipan sebuah kitab Jawa Kuno yang berjudul...", pilihan: ["Kitab Negara Kertagama", "Kitab Sutasoma", "Kitab Arjuna Wiwaha", "Kitab Pararaton"], jawabanBenar: 1 },
       { pertanyaan: "16. Siapakah pujangga/pengarang terkenal dari Kerajaan Majapahit yang menulis Kitab Sutasoma?", pilihan: ["Empu Prapanca", "Empu Tantular", "Empu Panuluh", "Empu Sedah"], jawabanBenar: 1 },
-      { pertanyaan: "17. Lambang perisai suci untuk sila pertama Pancasila, 'Ketuhanan Yang Maha Esa', digambarkan dengan simbol...", pilihan: ["Pohon Beringin", "Kepala Banteng", "Rantai Baja", "Bintang Emas"], jawabanBenar: 4 },
+      { pertanyaan: "17. Lambang perisai suci untuk sila pertama Pancasila, 'Ketuhanan Yang Maha Esa', digambarkan dengan simbol...", pilihan: ["Pohon Beringin", "Kepala Banteng", "Rantai Baja", "Bintang Emas"], jawabanBenar: 3 },
       { pertanyaan: "18. Latar belakang warna ruang pada simbol Bintang Emas sila pertama Pancasila adalah berwarna...", pilihan: ["Merah", "Putih", "Hijau", "Hitam"], jawabanBenar: 3 },
       { pertanyaan: "19. Sila kedua Pancasila, 'Kemanusiaan yang adil dan beradab', secara simbolis dilambangkan oleh...", pilihan: ["Bintang", "Rantai Baja", "Pohon Beringin", "Padi dan Kapas"], jawabanBenar: 1 },
       { pertanyaan: "20. Pada simbol sila kedua, mata rantai berbentuk persegi melambangkan gender...", pilihan: ["Laki-laki", "Perempuan", "Anak-anak", "Lansia"], jawabanBenar: 0 },
@@ -460,7 +478,7 @@
       { pertanyaan: "22. Pohon Beringin merupakan simbol sakral yang mewakili sila Pancasila keberapa?", pilihan: ["Sila Kedua", "Sila Ketiga", "Sila Keempat", "Sila Kelima"], jawabanBenar: 2 },
       { pertanyaan: "23. Sila keempat Pancasila dilambangkan oleh Kepala Banteng. Mengapa hewan banteng dipilih?", pilihan: ["Karena banteng hewan penyendiri", "Karena banteng hewan sosial yang suka berkumpul", "Karena banteng hewan asli papua", "Karena banteng melambangkan pertanian"], jawabanBenar: 1 },
       { pertanyaan: "24. Simbol Padi dan Kapas pada perisai Garuda melambangkan sila...", pilihan: ["Persatuan Indonesia", "Keadilan sosial bagi seluruh rakyat Indonesia", "Kemanusiaan yang adil dan beradab", "Ketuhanan Yang Maha Esa"], jawabanBenar: 1 },
-      { pertanyaan: "25. Kedudukan dan fungsi utama Pancasila dalam sistem tatanan hukum di Indonesia adalah sebagai...", pilihan: ["Hukum adat tertinggi", "Sumber dari segala sumber hukum negara", "Hukum internasional", "Undang-undang pelengkap"], jawabanBenar: 2 },
+      { pertanyaan: "25. Kedudukan dan fungsi utama Pancasila dalam sistem tatanan hukum di Indonesia adalah sebagai...", pilihan: ["Hukum adat tertinggi", "Sumber dari segala sumber hukum negara", "Hukum internasional", "Undang-undang pelengkap"], jawabanBenar: 1 },
       { pertanyaan: "26. Pancasila berfungsi sebagai 'Way of life' bagi bangsa Indonesia. Istilah ini memiliki arti sebagai...", pilihan: ["Perjanjian luhur", "Pandangan hidup bangsa", "Kepribadian bangsa", "Cita-cita bangsa"], jawabanBenar: 1 },
       { pertanyaan: "27. Pancasila berperan sebagai filter dalam globalisasi, artinya Pancasila digunakan untuk...", pilihan: ["Menolak semua bentuk teknologi dari luar negeri", "Menyaring budaya asing agar sesuai nilai luhur bangsa", "Menerima budaya luar tanpa batasan", "Melarang warga negara ke luar negeri"], jawabanBenar: 1 },
       { pertanyaan: "28. Menghormati teman atau tetangga yang sedang menjalankan ibadah keagamaan merupakan pengamalan sila ke...", pilihan: ["1", "2", "3", "4"], jawabanBenar: 0 },
@@ -468,7 +486,7 @@
       { pertanyaan: "30. Ikut serta secara aktif dalam kegiatan kerja bakti atau gotong royong membersihkan kampung adalah wujud sila ke...", pilihan: ["2", "3", "4", "5"], jawabanBenar: 1 },
       { pertanyaan: "31. Mengutamakan kepentingan bangsa dan negara di atas kepentingan pribadi atau golongan merupakan perwujudan sila ke...", pilihan: ["Sila Ke-1", "Sila Ke-2", "Sila Ke-3", "Sila Ke-5"], jawabanBenar: 2 },
       { pertanyaan: "32. Mengutamakan jalur musyawarah mufakat dalam menyelesaikan setiap perbedaan pendapat merupakan pengamalan sila ke...", pilihan: ["2", "3", "4", "5"], jawabanBenar: 2 },
-      { pertanyaan: "33. Tidak memaksakan kehendak atau pilihan pribadi kepada orang lain saat berdiskusi kelompok kelompok sesuai sila...", pilihan: ["Sila Kedua", "Sila Ketiga", "Sila Keempat", "Sila Kelima"], jawabanBenar: 2 },
+      { pertanyaan: "33. Tidak memaksakan kehendak atau pilihan pribadi kepada orang lain saat berdiskusi kelompok sesuai sila...", pilihan: ["Sila Kedua", "Sila Ketiga", "Sila Keempat", "Sila Kelima"], jawabanBenar: 2 },
       { pertanyaan: "34. Suka menghargai hasil karya orang lain dan bersikap adil kepada sesama merupakan contoh pengamalan sila ke...", pilihan: ["2", "3", "4", "5"], jawabanBenar: 3 },
       { pertanyaan: "35. Membiasakan diri gemar menabung dan menjauhi gaya hidup boros/mewah merupakan butir pengamalan sila...", pilihan: ["Sila Kedua", "Sila Ketiga", "Sila Keempat", "Sila Kelima"], jawabanBenar: 3 },
       { pertanyaan: "36. Mengakui persamaan derajat, hak, serta kewajiban asasi antar sesama manusia didasarkan pada sila...", pilihan: ["Sila 1", "Sila 2", "Sila 3", "Sila 4"], jawabanBenar: 1 },
